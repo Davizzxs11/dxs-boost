@@ -1,0 +1,23 @@
+﻿DXS BOOST 0.8.1 — PARA TESTAR
+
+1. Extraia este ZIP e abra DXSBoost-Setup-0.8.1.exe.
+2. Siga a instalação. O atalho na área de trabalho é opcional.
+3. Abra DXS Boost pelo menu Iniciar.
+4. Em Sobre, abra o guia de uso para conhecer as funções.
+
+Requer Windows 10 ou 11 de 64 bits, com .NET Framework 4.8 ou posterior.
+Esta edição de teste ainda não tem assinatura digital.
+O app principal não pede administrador; o auxiliar de FPS pode pedir.
+
+Para contar um problema, envie ao amigo que forneceu o app:
+- o que você fez e o que esperava que acontecesse;
+- a mensagem ou imagem do erro;
+- Windows, placa de vídeo e nome do jogo, se envolver o monitoramento;
+- versão do app: 0.8.1.
+
+Para atualizar, feche o DXS e execute o próximo instalador. Preferências,
+favoritos e histórico serão mantidos. O canal de atualizações online ainda
+não foi publicado; por enquanto, novas versões serão enviadas pelo autor.
+
+Para remover, use Aplicativos instalados nas Configurações do Windows.
+A desinstalação preserva seus dados em %LOCALAPPDATA%\DXSBoost.
