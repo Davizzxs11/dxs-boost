@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /downloads/
+Disallow: /docs/
+Sitemap: https://dxsboost.com.br/sitemap.xml

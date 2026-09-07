@@ -3,25 +3,30 @@
 Página oficial do **DXS Boost**, aplicativo local de monitoramento de desempenho
 para jogos no Windows 10 e 11.
 
-Publicada em <https://davizzxs11.github.io/dxs-boost>.
+Publicada em <https://dxsboost.com.br> pelo GitHub Pages.
 
 ## O que tem aqui
 
 | Caminho | O que é |
 |---|---|
-| `index.html` | A página inteira: HTML, CSS e o pouco de JavaScript das abas, tudo num arquivo só. |
-| `imagens/` | Capturas de tela do aplicativo. |
-| `download/` | O instalador oferecido pela página. |
-| `favicon.ico` | Ícone da aba do navegador. |
+| `index.html` e demais páginas HTML | Exportação estática do site em React e TypeScript. |
+| `_next/` | JavaScript e CSS gerados na compilação. |
+| `images/` | Logo e capturas reais do aplicativo. |
+| `downloads/` | Instalador oferecido pela versão atual. |
+| `docs/` | Documentação e licenças do software. |
+| `CNAME` e `.nojekyll` | Domínio próprio e publicação dos arquivos estáticos. |
+| `imagens/`, `download/` e `favicon.ico` | Arquivos anteriores preservados para manter links existentes. |
 
 O código-fonte do aplicativo **não** está neste repositório.
 
 ## Publicar uma versão nova do app
 
-1. Coloque o instalador novo em `download/`.
-2. Em `index.html`, troque as três ocorrências do nome do arquivo e o número da
-   versão (procure por `0.8.1`).
-3. Faça commit e push. O GitHub Pages atualiza sozinho em cerca de um minuto.
+1. No projeto-fonte do site, atualize `config/software-config.ts` e o instalador em `public/downloads/`.
+2. Execute `npm run build` e copie o conteúdo completo de `dist/client/` para este repositório, incluindo `.nojekyll`, `CNAME` e `_next/`.
+3. Faça commit e push e acompanhe a conclusão do GitHub Pages na aba Actions.
+4. Confira o site, as páginas informativas e o download em HTTPS.
+
+Este repositório contém o resultado compilado. As alterações de conteúdo devem ser feitas no projeto-fonte e compiladas novamente.
 
 ## Licença
 

@@ -1,0 +1,1 @@
+import{r as e}from"./rolldown-runtime-hePW80VL.js";import{i as t}from"./framework-DTZGTDtF.js";var n=e(t(),1);function r(e){let t=setInterval(e,864e5);return()=>clearInterval(t)}function i({initialYear:e}){return(0,n.useSyncExternalStore)(r,()=>new Date().getFullYear(),()=>e)}export{i as CopyrightYear};

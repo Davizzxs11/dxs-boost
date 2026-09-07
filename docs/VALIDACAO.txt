@@ -1,0 +1,38 @@
+﻿DXS BOOST 0.8.1 — DISTRIBUIÇÃO PARA TESTE
+Data: 06/09/2026
+
+185 testes automatizados do aplicativo passaram: 26 núcleo, 21 opções, 24 Game On,
+43 recursos, 45 monitoramento, 15 recursos da v0.8 e 11 distribuição/atualizações.
+O fluxo de integração da interface também passou. Captura e alertas de jogo usam
+leituras simuladas nos cenários novos; não houve teste de uma partida real nesta entrega.
+
+19 verificações do instalador passaram: instalação da v0.8, dependências, atalhos,
+cadastro no Windows, atualização para v0.8.1, hashes dos binários, bloqueio de
+downgrade, bloqueio com mutex do app, reinstalação, remoção de atalhos/cadastro,
+preservação de arquivos externos e do opt-in de inicialização, desinstalação.
+Uma nova instalação não habilita o início automático.
+
+Instalação e desinstalação foram testadas em diretórios e identidade próprios de
+teste. Atalhos de teste ficaram dentro desses diretórios. O cadastro de teste foi
+removido. O DXS v0.8 do usuário não foi fechado, atualizado nem desinstalado.
+Dados de preferência/biblioteca/histórico de teste permaneceram com hashes iguais.
+
+As verificações de novos manifestos usam respostas controladas, incluindo versão
+nova/igual/antiga, canal ausente, falha de conexão e encerramento durante a consulta.
+O canal público ainda não foi configurado ou publicado. O download real e a busca
+contra um futuro servidor de produção precisam ser conferidos após a publicação.
+
+O instalador foi compilado com Inno Setup 6.7.3, baixado do repositório oficial,
+com SHA-256 do release conferido e assinatura Authenticode do compilador válida.
+O DXS e seu instalador não possuem assinatura digital própria.
+
+Compatibilidade declarada: Windows 10/11 x64, .NET Framework 4.8+. Testes locais
+no Windows atual; ainda é necessário validar em outro PC, inclusive Windows 10,
+além de sensores/overlay sobre jogos reais. Não foi simulado um PC sem .NET 4.8.
+
+Depois da suíte, apenas os textos de versão no CSV e no diagnóstico foram
+ajustados de 0.8 para 0.8.1. O app foi recompilado e os binários finais passaram
+novamente pelo ciclo de instalação, comparação de hashes e desinstalação.
+
+Logs no pacote de código-fonte: docs/testes-v0.8.1.txt e
+docs/testes-instalador-v0.8.1.txt.

@@ -1,0 +1,314 @@
+{
+  "_Icon-jpk45vUa.js": {
+    "file": "_next/static/chunks/Icon-jpk45vUa.js",
+    "name": "Icon",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ]
+  },
+  "_arrow-down-to-line-Do997TXy.js": {
+    "file": "_next/static/chunks/arrow-down-to-line-Do997TXy.js",
+    "name": "arrow-down-to-line",
+    "imports": [
+      "_createLucideIcon-C0Hk8rLa.js"
+    ]
+  },
+  "_arrow-up-right-BaRrL3MR.js": {
+    "file": "_next/static/chunks/arrow-up-right-BaRrL3MR.js",
+    "name": "arrow-up-right",
+    "imports": [
+      "_createLucideIcon-C0Hk8rLa.js"
+    ]
+  },
+  "_button-DNh0500T.js": {
+    "file": "_next/static/chunks/button-DNh0500T.js",
+    "name": "button",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_utils-CjMlTH8G.js",
+      "_dist-f50dJ7Q7.js",
+      "_useValueAsRef-Cy9HQUQ1.js"
+    ]
+  },
+  "_check-Da7XzLFi.js": {
+    "file": "_next/static/chunks/check-Da7XzLFi.js",
+    "name": "check",
+    "imports": [
+      "_createLucideIcon-C0Hk8rLa.js"
+    ]
+  },
+  "_chevron-down-Bpoyw2JQ.js": {
+    "file": "_next/static/chunks/chevron-down-Bpoyw2JQ.js",
+    "name": "chevron-down",
+    "imports": [
+      "_createLucideIcon-C0Hk8rLa.js"
+    ]
+  },
+  "_createLucideIcon-C0Hk8rLa.js": {
+    "file": "_next/static/chunks/createLucideIcon-C0Hk8rLa.js",
+    "name": "createLucideIcon",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_Icon-jpk45vUa.js"
+    ]
+  },
+  "_dist-f50dJ7Q7.js": {
+    "file": "_next/static/chunks/dist-f50dJ7Q7.js",
+    "name": "dist",
+    "imports": [
+      "_utils-CjMlTH8G.js"
+    ]
+  },
+  "_frametime-chart-CTrP7erK.js": {
+    "file": "_next/static/chunks/frametime-chart-CTrP7erK.js",
+    "name": "frametime-chart",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ]
+  },
+  "_framework-DTZGTDtF.js": {
+    "file": "_next/static/chunks/framework-DTZGTDtF.js",
+    "name": "framework",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js"
+    ]
+  },
+  "_play-CGHNHU5L.js": {
+    "file": "_next/static/chunks/play-CGHNHU5L.js",
+    "name": "play",
+    "imports": [
+      "_createLucideIcon-C0Hk8rLa.js"
+    ]
+  },
+  "_rolldown-runtime-hePW80VL.js": {
+    "file": "_next/static/chunks/rolldown-runtime-hePW80VL.js",
+    "name": "rolldown-runtime"
+  },
+  "_software-config-ILOsPHDl.js": {
+    "file": "_next/static/chunks/software-config-ILOsPHDl.js",
+    "name": "software-config"
+  },
+  "_tabs-BSXFVgp2.js": {
+    "file": "_next/static/chunks/tabs-BSXFVgp2.js",
+    "name": "tabs",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_utils-CjMlTH8G.js",
+      "_dist-f50dJ7Q7.js",
+      "_useCompositeListItem-D7UlsLoX.js"
+    ]
+  },
+  "_useCompositeListItem-D7UlsLoX.js": {
+    "file": "_next/static/chunks/useCompositeListItem-D7UlsLoX.js",
+    "name": "useCompositeListItem",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_utils-CjMlTH8G.js"
+    ]
+  },
+  "_useValueAsRef-Cy9HQUQ1.js": {
+    "file": "_next/static/chunks/useValueAsRef-Cy9HQUQ1.js",
+    "name": "useValueAsRef",
+    "imports": [
+      "_utils-CjMlTH8G.js"
+    ]
+  },
+  "_utils-CjMlTH8G.js": {
+    "file": "_next/static/chunks/utils-CjMlTH8G.js",
+    "name": "utils",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ]
+  },
+  "_vinext-DR860hSu.js": {
+    "file": "_next/static/chunks/vinext-DR860hSu.js",
+    "name": "vinext",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ],
+    "dynamicImports": [
+      "_vinext-DR860hSu.js"
+    ]
+  },
+  "components/copyright-year.tsx": {
+    "file": "_next/static/chunks/copyright-year-DKUhtyPZ.js",
+    "name": "copyright-year",
+    "src": "components/copyright-year.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ]
+  },
+  "components/navbar.tsx": {
+    "file": "_next/static/chunks/navbar-Cad9-QUo.js",
+    "name": "navbar",
+    "src": "components/navbar.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_arrow-down-to-line-Do997TXy.js",
+      "_button-DNh0500T.js",
+      "_utils-CjMlTH8G.js",
+      "_dist-f50dJ7Q7.js"
+    ]
+  },
+  "components/page-effects.tsx": {
+    "file": "_next/static/chunks/page-effects-6fDwpRQC.js",
+    "name": "page-effects",
+    "src": "components/page-effects.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ]
+  },
+  "components/product-window.tsx": {
+    "file": "_next/static/chunks/product-window-CRtg-ljQ.js",
+    "name": "product-window",
+    "src": "components/product-window.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ]
+  },
+  "components/support-actions.tsx": {
+    "file": "_next/static/chunks/support-actions-irhRRG6B.js",
+    "name": "support-actions",
+    "src": "components/support-actions.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_arrow-down-to-line-Do997TXy.js",
+      "_software-config-ILOsPHDl.js"
+    ]
+  },
+  "node_modules/vinext/dist/shims/layout-segment-context.js": {
+    "file": "_next/static/chunks/layout-segment-context-BawjKcY4.js",
+    "name": "layout-segment-context",
+    "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_vinext-DR860hSu.js"
+    ]
+  },
+  "sections/benchmark.tsx": {
+    "file": "_next/static/chunks/benchmark-Dj7cFtlt.js",
+    "name": "benchmark",
+    "src": "sections/benchmark.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_arrow-down-to-line-Do997TXy.js",
+      "_tabs-BSXFVgp2.js",
+      "_frametime-chart-CTrP7erK.js"
+    ]
+  },
+  "sections/download.tsx": {
+    "file": "_next/static/chunks/download-CmfSOAVE.js",
+    "name": "download",
+    "src": "sections/download.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_arrow-down-to-line-Do997TXy.js",
+      "_arrow-up-right-BaRrL3MR.js",
+      "_check-Da7XzLFi.js",
+      "_chevron-down-Bpoyw2JQ.js",
+      "_software-config-ILOsPHDl.js"
+    ]
+  },
+  "sections/faq.tsx": {
+    "file": "_next/static/chunks/faq-BNfXee8e.js",
+    "name": "faq",
+    "src": "sections/faq.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_arrow-up-right-BaRrL3MR.js",
+      "_chevron-down-Bpoyw2JQ.js",
+      "_utils-CjMlTH8G.js",
+      "_useValueAsRef-Cy9HQUQ1.js",
+      "_useCompositeListItem-D7UlsLoX.js"
+    ]
+  },
+  "sections/features.tsx": {
+    "file": "_next/static/chunks/features-CLjU0TbN.js",
+    "name": "features",
+    "src": "sections/features.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_arrow-up-right-BaRrL3MR.js",
+      "_check-Da7XzLFi.js",
+      "_play-CGHNHU5L.js",
+      "_button-DNh0500T.js",
+      "_utils-CjMlTH8G.js",
+      "components/product-window.tsx",
+      "_tabs-BSXFVgp2.js"
+    ]
+  },
+  "sections/metrics.tsx": {
+    "file": "_next/static/chunks/metrics-DYo0JM4N.js",
+    "name": "metrics",
+    "src": "sections/metrics.tsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_createLucideIcon-C0Hk8rLa.js",
+      "_arrow-up-right-BaRrL3MR.js",
+      "_play-CGHNHU5L.js",
+      "_frametime-chart-CTrP7erK.js"
+    ]
+  },
+  "virtual:vinext-app-browser-entry": {
+    "file": "_next/static/chunks/index-B0Ac29eG.js",
+    "name": "index",
+    "src": "virtual:vinext-app-browser-entry",
+    "isEntry": true,
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_vinext-DR860hSu.js"
+    ],
+    "dynamicImports": [
+      "sections/metrics.tsx",
+      "_vinext-DR860hSu.js",
+      "components/page-effects.tsx",
+      "node_modules/vinext/dist/shims/layout-segment-context.js",
+      "sections/benchmark.tsx",
+      "_Icon-jpk45vUa.js",
+      "components/product-window.tsx",
+      "sections/faq.tsx",
+      "components/navbar.tsx",
+      "sections/download.tsx",
+      "components/copyright-year.tsx",
+      "components/support-actions.tsx",
+      "sections/features.tsx"
+    ]
+  }
+}
