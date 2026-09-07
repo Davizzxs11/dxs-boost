@@ -2,4 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /downloads/
 Disallow: /docs/
+Disallow: /obrigado/
+Disallow: /baixar/
 Sitemap: https://dxsboost.com.br/sitemap.xml
