@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Teste de licença — DXS Boost</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;padding:20px;background:#110B22;color:#F2EEFF;font:16px/1.6 "Segoe UI",system-ui,-apple-system,sans-serif}
+main{max-width:640px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:#C5B7DE;font-size:14px;margin:0 0 22px}
+.aviso{background:#3a2a12;border:1px solid #7a5a22;border-radius:10px;padding:12px 14px;font-size:14px;margin-bottom:22px}
+label{display:block;font-weight:600;font-size:14px;margin:18px 0 6px}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:1px solid #533679;background:#1A112D;color:#ECE4FF;font:13px/1.5 ui-monospace,Consolas,monospace}
+textarea{resize:vertical}
+button{width:100%;margin-top:12px;padding:15px;border:0;border-radius:12px;background:#AF80FF;color:#140B28;font-size:16px;font-weight:700;cursor:pointer}
+button.sec{background:#2c1f47;color:#E6DBFF;border:1px solid #533679}
+button:disabled{opacity:.5}
+pre{white-space:pre-wrap;word-break:break-word;background:#1A112D;border:1px solid #533679;border-radius:10px;padding:14px;font:12px/1.6 ui-monospace,Consolas,monospace;margin-top:16px}
+a.pagar{display:block;margin-top:16px;padding:16px;border-radius:12px;background:#00A650;color:#fff;text-align:center;font-weight:700;text-decoration:none}
+.hint{color:#9988B6;font-size:12.5px;margin-top:8px}
+</style>
+</head>
+<body>
+<main>
+<h1>Teste de licença</h1>
+<p class="sub">Página temporária de homologação. Não está ligada ao site.</p>
+
+<div class="aviso">O servidor está em <strong>modo de teste</strong> (<code>MP_LIVE_MODE=false</code>) com credenciais de sandbox. Nenhuma cobrança real acontece aqui.</div>
+
+<label for="device">Código do PC</label>
+<textarea id="device" rows="2">DXS-852CCFA60F4D5171192D01A29726278CCF958759E525B52041982AF9B8C1B1D2</textarea>
+
+<label for="email">E-mail do comprador de teste</label>
+<input id="email" value="test_user_dxs@testuser.com">
+<p class="hint">Se der erro, troque por um e-mail de conta de teste do Mercado Pago e tente de novo.</p>
+
+<label for="access">Código de acesso</label>
+<textarea id="access" rows="2">rjYdChMlQMrfg5IDzIxIXElV0YK8WKMrbGUyKAhsm1g</textarea>
+<p class="hint">Guarde este código. É com ele que o app ativa a licença depois.</p>
+
+<button id="criar">Criar assinatura de teste</button>
+<button id="consultar" class="sec">Consultar licença</button>
+
+<div id="link"></div>
+<pre id="saida">Pronto. Toque em um dos botões.</pre>
+</main>
+
+<script>
+var API = "https://dxsboost-licencas.wisp.uno";
+var saida = document.getElementById("saida");
+var linkBox = document.getElementById("link");
+
+function mostrar(titulo, status, corpo) {
+  saida.textContent = titulo + "\n\nHTTP " + status + "\n\n" + corpo;
+}
+
+async function chamar(caminho, dados, titulo) {
+  linkBox.innerHTML = "";
+  saida.textContent = "Chamando " + caminho + "...";
+  try {
+    var r = await fetch(API + caminho, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados)
+    });
+    var texto = await r.text();
+    mostrar(titulo, r.status, texto);
+    try {
+      var j = JSON.parse(texto);
+      if (j.checkout) {
+        linkBox.innerHTML = '<a class="pagar" target="_blank" rel="noopener">Abrir pagamento no Mercado Pago</a>';
+        linkBox.firstChild.href = j.checkout;
+      }
+      if (j.license) {
+        saida.textContent += "\n\n>>> LICENCA EMITIDA <<<";
+      }
+    } catch (e) {}
+  } catch (e) {
+    mostrar(titulo, "sem resposta", "Falha de rede: " + e + "\n\nSe aparecer isto, esta rede nao alcanca o servidor.");
+  }
+}
+
+document.getElementById("criar").onclick = function () {
+  chamar("/v1/checkout", {
+    device: document.getElementById("device").value.trim().toUpperCase(),
+    email: document.getElementById("email").value.trim().toLowerCase(),
+    access: document.getElementById("access").value.trim(),
+    consent: true
+  }, "Criar assinatura");
+};
+
+document.getElementById("consultar").onclick = function () {
+  chamar("/v1/license/status", {
+    access: document.getElementById("access").value.trim()
+  }, "Consultar licenca");
+};
+</script>
+</body>
+</html>
