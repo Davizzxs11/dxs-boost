@@ -40,7 +40,8 @@ a.pagar{display:block;margin-top:16px;padding:16px;border-radius:12px;background
 
 <label for="access">Código de acesso</label>
 <textarea id="access" rows="2">rjYdChMlQMrfg5IDzIxIXElV0YK8WKMrbGUyKAhsm1g</textarea>
-<p class="hint">Guarde este código. É com ele que o app ativa a licença depois.</p>
+<button id="gerar" class="sec" style="margin-top:8px">Gerar código novo</button>
+<p class="hint">Guarde este código. É com ele que o app ativa a licença depois. Cada tentativa precisa de um código novo <strong>e</strong> de um e-mail diferente.</p>
 
 <button id="criar">Criar assinatura de teste</button>
 <button id="consultar" class="sec">Consultar licença</button>
@@ -97,6 +98,20 @@ document.getElementById("consultar").onclick = function () {
   chamar("/v1/license/status", {
     access: document.getElementById("access").value.trim()
   }, "Consultar licenca");
+};
+
+function novoCodigo() {
+  var b = new Uint8Array(32);
+  crypto.getRandomValues(b);
+  var bin = "";
+  for (var i = 0; i < b.length; i++) bin += String.fromCharCode(b[i]);
+  return btoa(bin).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+document.getElementById("gerar").onclick = function () {
+  var c = novoCodigo();
+  document.getElementById("access").value = c;
+  saida.textContent = "Codigo novo gerado (" + c.length + " caracteres).\n\nGuarde ele. Troque tambem o e-mail antes de criar a assinatura.";
+  linkBox.innerHTML = "";
 };
 </script>
 </body>
