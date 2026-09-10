@@ -23,7 +23,14 @@
   }
   if(!configured)notice('A ativação online está em preparação. O teste gratuito v0.8.2 continua disponível na página de download.');
   if(document.body.dataset.page==='checkout') {
-    function receivePC(){const fragment=new URLSearchParams(location.hash.slice(1)).get('pc');if(fragment && pcPattern.test(fragment) && !$('pc').readOnly)$('pc').value=fragment;}
+    let incomingAccess=null;
+    function receivePC(){
+      const h=new URLSearchParams(location.hash.slice(1));
+      const fragment=h.get('pc');
+      if(fragment && pcPattern.test(fragment) && !$('pc').readOnly)$('pc').value=fragment;
+      const ac=h.get('ac');
+      if(ac && accessPattern.test(ac))incomingAccess=ac;
+    }
     receivePC();window.addEventListener('hashchange',receivePC);
     if(current && accessPattern.test(current.access||'')) {
       $('saved').hidden=false;
@@ -33,11 +40,15 @@
       const device=$('pc').value.trim().toUpperCase(),email=$('email').value.trim().toLowerCase();
       if(!pcPattern.test(device))return notice('Copie o código completo em Minha licença, dentro do DXS Boost.','error');
       if(!$('email').checkValidity() || !email)return notice('Informe seu e-mail.','error');
-      if(current && (current.device!==device || current.email!==email))return notice('Já existe uma compra salva. Abra Minha licença e consulte-a; para outra compra, use um perfil separado do navegador.','error');
+      if(current && !incomingAccess && (current.device!==device || current.email!==email))return notice('Já existe uma compra salva. Abra Minha licença e consulte-a; para outra compra, use um perfil separado do navegador.','error');
       try {
-        if(!current) {const bytes=crypto.getRandomValues(new Uint8Array(32));const access=btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');save({access,device,email});}
+        if(!current || (incomingAccess && current.access!==incomingAccess)) {
+          const access=incomingAccess||btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+          save({access,device,email});
+        }
         $('access-code').textContent=current.access;$('backup').hidden=false;$('pc').readOnly=true;$('email').readOnly=true;
-        notice('Guarde o código de acesso antes de continuar. Cole esse código no app para ativar e receber as renovações.');
+        if(incomingAccess){const r=$('access-code').previousElementSibling;if(r)r.style.display='none';$('access-code').style.display='none';$('save-code').style.display='none';const t=document.querySelector('.check span');if(t)t.innerHTML='Concordo com a cobrança de R$ 10 por mês, com renovação automática, e com os <a href="/termos">termos</a>.';}
+        notice(incomingAccess?'Tudo pronto. O DXS Boost já guardou seu código e vai ativar sozinho assim que a cobrança for aprovada. Pode seguir para o pagamento.':'Guarde o código de acesso antes de continuar. Cole esse código no app para ativar e receber as renovações.');
       } catch {notice('Permita o armazenamento local neste navegador para guardar o acesso à compra. Nenhuma cobrança foi iniciada.','error');}
     });
     $('save-code').onclick=()=>download('DXS Boost — código de acesso privado\n\n'+current.access+'\n\nPC: '+current.device+'\nAtive no app: Minha licença > Ativar com código. As renovações chegam com internet.\nConsulta e arquivo: https://dxsboost.com.br/minha-licenca/\nNão compartilhe este código.\n','DXS-Guarde-seu-codigo.txt');
