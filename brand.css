@@ -1,58 +1,8 @@
-/* brand.css - tipografia e profundidade do DXS Boost.
+/* brand.css - tipografia e profundidade da home.
    Carregado depois do CSS compilado, por isso sobrescreve.
+   As fontes vem de fonts.css.
    ATENCAO: gerado a mao sobre o build. Ao recompilar do projeto-fonte,
    estas decisoes precisam ser levadas para la (ver brand.css no repo). */
-
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 400 800;
-  font-stretch: 62% 125%;
-  font-display: swap;
-  src: url(/fonts/archivo-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Archivo';
-  font-style: normal;
-  font-weight: 400 800;
-  font-stretch: 62% 125%;
-  font-display: swap;
-  src: url(/fonts/archivo-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url(/fonts/inter-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 300 700;
-  font-display: swap;
-  src: url(/fonts/inter-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url(/fonts/jbmono-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400 600;
-  font-display: swap;
-  src: url(/fonts/jbmono-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 /* ============ TIPOGRAFIA ============ */
 :root{
@@ -64,7 +14,7 @@ body{font-family:"Inter","Segoe UI",Arial,sans-serif}
 /* Archivo e variavel: o eixo de largura recria o ar condensado do Bahnschrift */
 h1{font-stretch:76%;letter-spacing:-.015em;font-weight:800}
 h2{font-stretch:88%;letter-spacing:-.012em;font-weight:700}
-h3,h4{font-stretch:92%;font-weight:650}
+h3,h4{font-stretch:96%;font-weight:650}  /* titulo pequeno sofre com condensacao: quase largura normal */
 
 /* Inter e ~4% mais largo que Segoe UI: segura o paragrafo do hero em 2 linhas */
 .hero p{max-width:34rem}
