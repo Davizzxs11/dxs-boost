@@ -21,7 +21,7 @@
     try{await fn();}catch(e){notice(e.message||'Não foi possível concluir.','error');}
     finally{busy=false;document.querySelectorAll('button').forEach(b=>b.disabled=false);}
   }
-  if(!configured)notice('A ativação online está em preparação. O teste gratuito v0.8.2 continua disponível na página de download.');
+  if(!configured)notice('A ativação online está indisponível no momento. Tente de novo em alguns minutos ou fale com o suporte.');
   if(document.body.dataset.page==='checkout') {
     let incomingAccess=null;
     function receivePC(){

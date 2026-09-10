@@ -1,16 +1,18 @@
-﻿# DXS Boost 0.8.1
+﻿# DXS Boost 0.9.2
 
 Aplicativo local para Windows 10/11, em português, com C# e WPF sobre .NET Framework 4.8.
 
-Abra **DXSBoost-Setup-0.8.1.exe** e siga a instalação. O app fica disponível no menu Iniciar; o atalho da área de trabalho é opcional. Requer Windows 10/11 de 64 bits e .NET Framework 4.8 ou posterior.
+Abra **DXSBoost-Setup-0.9.2.exe** e siga a instalação. O app fica disponível no menu Iniciar; o atalho da área de trabalho é opcional. Requer Windows 10/11 de 64 bits e .NET Framework 4.8 ou posterior.
 
 O instalador usa `%LOCALAPPDATA%\Programs\DXSBoost`, somente para sua conta, e registra a desinstalação em Aplicativos instalados do Windows. Preferências, biblioteca e histórico ficam separados em `%LOCALAPPDATA%\DXSBoost` e são preservados ao atualizar ou desinstalar. Iniciar com o Windows continua opcional. Uma escolha já feita na cópia portátil é mantida e o atalho é direcionado à instalação.
 
 Para atualizar, saia do DXS e execute o novo instalador. Uma versão antiga não substitui uma mais recente na mesma pasta. O instalador e o app principal não pedem administrador; o auxiliar da captura de FPS pede quando necessário.
 
-**Atualizações pela aba Sobre:** o verificador está implementado, mas esta edição de teste ainda não tem canal publicado. Nenhum aviso de atualização online será oferecido até o autor distribuir uma versão com esse endereço. A busca ao abrir é opcional. Quando houver canal, o download abre no navegador e o usuário escolhe quando instalar.
+**Licença:** o DXS Boost usa uma licença mensal de R$ 10 para 1 PC, com uso offline durante o período ativado. O instalador é gratuito e a licença é pedida no primeiro acesso, em Minha licença. A compra é feita em dxsboost.com.br, por cartão ou Pix, e a ativação é automática.
 
-**Distribuição para teste:** o instalador ainda não tem assinatura digital. Nenhuma proteção do Windows precisa ser desativada pelo app. O código-fonte e os testes acompanham o arquivo separado de código-fonte, incluindo os scripts em `installer` para gerar outras versões.
+**Atualizações pela aba Sobre:** o verificador está implementado, mas o canal público ainda não foi publicado. Nenhum aviso de atualização online será oferecido até o autor distribuir uma versão com esse endereço. A busca ao abrir é opcional. Quando houver canal, o download abre no navegador e o usuário escolhe quando instalar.
+
+**Assinatura digital:** o instalador ainda não tem assinatura digital própria. Nenhuma proteção do Windows precisa ser desativada pelo app. O código-fonte e os testes acompanham o arquivo separado de código-fonte, incluindo os scripts em `installer` para gerar outras versões.
 
 No pacote de código-fonte também é possível abrir `DXSBoost.exe` diretamente, mantendo `lib`, `tools` e o `.config` na mesma pasta.
 

@@ -1,38 +1,43 @@
-﻿DXS BOOST 0.8.1 — DISTRIBUIÇÃO PARA TESTE
-Data: 06/09/2026
+﻿DXS BOOST 0.9.2 — LICENÇA MENSAL E ATIVAÇÃO AUTOMÁTICA
+10/09/2026
 
-185 testes automatizados do aplicativo passaram: 26 núcleo, 21 opções, 24 Game On,
-43 recursos, 45 monitoramento, 15 recursos da v0.8 e 11 distribuição/atualizações.
-O fluxo de integração da interface também passou. Captura e alertas de jogo usam
-leituras simuladas nos cenários novos; não houve teste de uma partida real nesta entrega.
+TESTES AUTOMATIZADOS DO APLICATIVO
 
-19 verificações do instalador passaram: instalação da v0.8, dependências, atalhos,
-cadastro no Windows, atualização para v0.8.1, hashes dos binários, bloqueio de
-downgrade, bloqueio com mutex do app, reinstalação, remoção de atalhos/cadastro,
-preservação de arquivos externos e do opt-in de inicialização, desinstalação.
-Uma nova instalação não habilita o início automático.
+Todos os grupos passaram na compilação final, sem nenhuma falha: 26 do núcleo
+(limpeza e energia), 21 de opções e contador flutuante, 24 do Game On, 45 de
+monitoramento, 15 dos recursos da v0.8, 11 de distribuição e atualizações,
+8 do mural da tela inicial e 24 de licença. O grupo de integração da interface
+percorreu as seis páginas, incluindo limpeza com prévia, confirmação recusada e
+aceita, troca automática de processo e o caminho de movimento reduzido.
 
-Instalação e desinstalação foram testadas em diretórios e identidade próprios de
-teste. Atalhos de teste ficaram dentro desses diretórios. O cadastro de teste foi
-removido. O DXS v0.8 do usuário não foi fechado, atualizado nem desinstalado.
-Dados de preferência/biblioteca/histórico de teste permaneceram com hashes iguais.
+Os testes usam pastas próprias. Energia, prioridades, sensores e captura são
+simulados: nenhuma configuração real do Windows foi alterada, nenhum aplicativo
+do usuário foi fechado e nenhum jogo foi controlado.
 
-As verificações de novos manifestos usam respostas controladas, incluindo versão
-nova/igual/antiga, canal ausente, falha de conexão e encerramento durante a consulta.
-O canal público ainda não foi configurado ou publicado. O download real e a busca
-contra um futuro servidor de produção precisam ser conferidos após a publicação.
+LICENÇA E PAGAMENTO
 
-O instalador foi compilado com Inno Setup 6.7.3, baixado do repositório oficial,
-com SHA-256 do release conferido e assinatura Authenticode do compilador válida.
-O DXS e seu instalador não possuem assinatura digital própria.
+As 24 verificações de licença cobrem a assinatura entre linguagens (uma licença
+emitida pelo serviço em Node é aceita pelo verificador em C#), validade offline,
+proteção contra alteração do relógio, renovação, estado pendente, PC divergente,
+bloqueio de adulteração, cancelamento e desconexão concorrente.
 
-Compatibilidade declarada: Windows 10/11 x64, .NET Framework 4.8+. Testes locais
-no Windows atual; ainda é necessário validar em outro PC, inclusive Windows 10,
-além de sensores/overlay sobre jogos reais. Não foi simulado um PC sem .NET 4.8.
+O fluxo de compra foi confirmado em produção com um pagamento real por Pix: a
+licença foi emitida e o aplicativo ativou sozinho, sem digitação de código.
 
-Depois da suíte, apenas os textos de versão no CSV e no diagnóstico foram
-ajustados de 0.8 para 0.8.1. O app foi recompilado e os binários finais passaram
-novamente pelo ciclo de instalação, comparação de hashes e desinstalação.
+LIMITES CONHECIDOS
 
-Logs no pacote de código-fonte: docs/testes-v0.8.1.txt e
-docs/testes-instalador-v0.8.1.txt.
+O instalador não possui assinatura digital própria. Confira o SHA-256 publicado
+na página de download antes de instalar.
+
+A captura de FPS, os alertas e o contador durante partidas reais ainda precisam
+de validação mais ampla. Os cenários automatizados usam leituras simuladas.
+
+A compatibilidade com outras máquinas, Windows 10, múltiplos monitores e
+diferentes escalas de tela ainda precisa de verificação adicional.
+
+A proteção offline dificulta alterações comuns no relógio, mas não é inviolável
+e não permite revogação imediata enquanto o PC está sem internet. Reinstalar o
+Windows pode alterar o código do PC.
+
+Compatibilidade declarada: Windows 10/11 de 64 bits, .NET Framework 4.8 ou
+posterior.
