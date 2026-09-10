@@ -104,4 +104,27 @@
       const result=await api('/v1/checkout/pix',{...current,consent:true});
       if(typeof result.qr!=='string' || result.qr.length<20 || result.qr.length>2000)throw Error('Não foi possível gerar o código Pix. Tente novamente.');
       mostrarPix(result);
-      notice('Pague R$ 10 pelo QR Code ou pelo Pix Copia e
+      notice('Pague R$ 10 pelo QR Code ou pelo Pix Copia e Cola. Não feche esta página.');
+    });
+  }
+  if(document.body.dataset.page==='license') {
+    if(current?.access)$('access').value=current.access;
+    $('consult').onclick=()=>action(async()=>{
+      const access=$('access').value.trim();if(!accessPattern.test(access))throw Error('Cole o código de acesso guardado durante a compra.');
+      token=null;$('license-result').hidden=true;
+      const data=await api('/v1/license/status',{access});
+      try{save({...current,access,device:data.device});}catch{}
+      if(data.status==='active' && /^DXS1\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(data.license||'')) {
+        token=data.license;$('license-result').hidden=false;
+        $('expiry').textContent=new Date(data.expires*1000).toLocaleString('pt-BR');
+        $('licensed-pc').textContent=data.device;
+        notice('Pagamento confirmado pelo serviço. Sua licença está disponível.','success');
+      } else if(data.status==='expired')notice('O período pago terminou. Se houve uma nova cobrança, aguarde a confirmação e consulte novamente.');
+      else notice('Ainda não encontramos uma cobrança aprovada para esta compra. Se acabou de pagar, aguarde e consulte novamente.');
+    });
+    $('download-license').onclick=()=>{if(token)download(token+'\n','DXSBoost.dxslicense');};
+    $('forget').onclick=()=>{if(confirm('Você guardou seu código? Isso remove somente o acesso deste navegador e não cancela a assinatura.')){localStorage.removeItem(storage);current=null;$('access').value='';token=null;$('license-result').hidden=true;notice('Acesso removido deste navegador. Sua assinatura não foi cancelada.');}};
+    // Não usar status=approved, authorized ou outros parâmetros como confirmação.
+    if(location.search)history.replaceState(null,'',location.pathname+location.hash);
+  }
+})();
