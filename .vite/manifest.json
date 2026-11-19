@@ -10,78 +10,78 @@
     "file": "_next/static/chunks/rolldown-runtime-hePW80VL.js",
     "name": "rolldown-runtime"
   },
-  "_software-config-kzlH9k33.js": {
-    "file": "_next/static/chunks/software-config-kzlH9k33.js",
+  "_software-config-CYlM2gf_.js": {
+    "file": "_next/static/chunks/software-config-CYlM2gf_.js",
     "name": "software-config"
   },
-  "_vinext-VGRSRQo-.js": {
-    "file": "_next/static/chunks/vinext-VGRSRQo-.js",
+  "_vinext-Bq1XhMxh.js": {
+    "file": "_next/static/chunks/vinext-Bq1XhMxh.js",
     "name": "vinext",
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js"
     ],
     "dynamicImports": [
-      "_vinext-VGRSRQo-.js"
+      "_vinext-Bq1XhMxh.js"
     ]
   },
   "components/liquid-home.tsx": {
-    "file": "_next/static/chunks/liquid-home-CQLBmAbQ.js",
+    "file": "_next/static/chunks/liquid-home-LepqbSf2.js",
     "name": "liquid-home",
     "src": "components/liquid-home.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_software-config-kzlH9k33.js",
+      "_software-config-CYlM2gf_.js",
       "components/liquid-shell.tsx"
     ]
   },
   "components/liquid-shell.tsx": {
-    "file": "_next/static/chunks/liquid-shell-BSQRJ-FR.js",
+    "file": "_next/static/chunks/liquid-shell-D7cvW1bs.js",
     "name": "liquid-shell",
     "src": "components/liquid-shell.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_software-config-kzlH9k33.js"
+      "_software-config-CYlM2gf_.js"
     ]
   },
   "components/support-actions.tsx": {
-    "file": "_next/static/chunks/support-actions-C99zOMuc.js",
+    "file": "_next/static/chunks/support-actions-DOt4yg29.js",
     "name": "support-actions",
     "src": "components/support-actions.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_software-config-kzlH9k33.js"
+      "_software-config-CYlM2gf_.js"
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-VLidxgZ-.js",
+    "file": "_next/static/chunks/layout-segment-context-_XWC8gAt.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-VGRSRQo-.js"
+      "_vinext-Bq1XhMxh.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-Ux2dIcc6.js",
+    "file": "_next/static/chunks/index-B7i2avBQ.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-VGRSRQo-.js"
+      "_vinext-Bq1XhMxh.js"
     ],
     "dynamicImports": [
-      "_vinext-VGRSRQo-.js",
+      "_vinext-Bq1XhMxh.js",
       "node_modules/vinext/dist/shims/layout-segment-context.js",
       "components/liquid-home.tsx",
       "components/support-actions.tsx",
