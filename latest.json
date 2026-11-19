@@ -1,0 +1,8 @@
+{
+    "schema":  1,
+    "product":  "DXSBoost",
+    "version":  "0.9.4.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.4.exe",
+    "notes":  "Atualizações automáticas: o app avisa quando sai versão nova e atualiza com um toque.\nA atualização é baixada do site oficial e conferida pelo SHA-256 antes de instalar.",
+    "sha256":  "914990763d291fad02e344e4c014aeafd1c75405148e430decd1974a629e6adb"
+}
