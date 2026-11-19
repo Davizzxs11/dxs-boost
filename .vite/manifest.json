@@ -1,21 +1,4 @@
 {
-  "_Icon-jpk45vUa.js": {
-    "file": "_next/static/chunks/Icon-jpk45vUa.js",
-    "name": "Icon",
-    "imports": [
-      "_rolldown-runtime-hePW80VL.js",
-      "_framework-DTZGTDtF.js"
-    ]
-  },
-  "_arrow-down-to-line-CmO-JnJn.js": {
-    "file": "_next/static/chunks/arrow-down-to-line-CmO-JnJn.js",
-    "name": "arrow-down-to-line",
-    "imports": [
-      "_rolldown-runtime-hePW80VL.js",
-      "_framework-DTZGTDtF.js",
-      "_Icon-jpk45vUa.js"
-    ]
-  },
   "_framework-DTZGTDtF.js": {
     "file": "_next/static/chunks/framework-DTZGTDtF.js",
     "name": "framework",
@@ -31,33 +14,19 @@
     "file": "_next/static/chunks/software-config-BM-0IQuQ.js",
     "name": "software-config"
   },
-  "_utils-DojpP95n.js": {
-    "file": "_next/static/chunks/utils-DojpP95n.js",
-    "name": "utils"
-  },
-  "_vinext-DDLBMeTc.js": {
-    "file": "_next/static/chunks/vinext-DDLBMeTc.js",
+  "_vinext-CWMGWtTf.js": {
+    "file": "_next/static/chunks/vinext-CWMGWtTf.js",
     "name": "vinext",
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js"
     ],
     "dynamicImports": [
-      "_vinext-DDLBMeTc.js"
-    ]
-  },
-  "components/copyright-year.tsx": {
-    "file": "_next/static/chunks/copyright-year-DKUhtyPZ.js",
-    "name": "copyright-year",
-    "src": "components/copyright-year.tsx",
-    "isDynamicEntry": true,
-    "imports": [
-      "_rolldown-runtime-hePW80VL.js",
-      "_framework-DTZGTDtF.js"
+      "_vinext-CWMGWtTf.js"
     ]
   },
   "components/liquid-home.tsx": {
-    "file": "_next/static/chunks/liquid-home-D8pRrlqX.js",
+    "file": "_next/static/chunks/liquid-home-BXTgSO9D.js",
     "name": "liquid-home",
     "src": "components/liquid-home.tsx",
     "isDynamicEntry": true,
@@ -65,61 +34,58 @@
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
       "_software-config-BM-0IQuQ.js",
-      "_utils-DojpP95n.js"
+      "components/liquid-shell.tsx"
     ]
   },
-  "components/navbar.tsx": {
-    "file": "_next/static/chunks/navbar--F1fp088.js",
-    "name": "navbar",
-    "src": "components/navbar.tsx",
+  "components/liquid-shell.tsx": {
+    "file": "_next/static/chunks/liquid-shell-MFeqxDuh.js",
+    "name": "liquid-shell",
+    "src": "components/liquid-shell.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_utils-DojpP95n.js",
-      "_arrow-down-to-line-CmO-JnJn.js"
+      "_software-config-BM-0IQuQ.js"
     ]
   },
   "components/support-actions.tsx": {
-    "file": "_next/static/chunks/support-actions-o8uqETwQ.js",
+    "file": "_next/static/chunks/support-actions-Bz6d2bdY.js",
     "name": "support-actions",
     "src": "components/support-actions.tsx",
     "isDynamicEntry": true,
     "imports": [
+      "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_software-config-BM-0IQuQ.js",
-      "_arrow-down-to-line-CmO-JnJn.js"
+      "_software-config-BM-0IQuQ.js"
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-B4dyvhZy.js",
+    "file": "_next/static/chunks/layout-segment-context-CSRlXGQw.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-DDLBMeTc.js"
+      "_vinext-CWMGWtTf.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-CFh2TWhb.js",
+    "file": "_next/static/chunks/index-XohmWCr2.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-DDLBMeTc.js"
+      "_vinext-CWMGWtTf.js"
     ],
     "dynamicImports": [
-      "_vinext-DDLBMeTc.js",
+      "_vinext-CWMGWtTf.js",
       "node_modules/vinext/dist/shims/layout-segment-context.js",
-      "_Icon-jpk45vUa.js",
       "components/liquid-home.tsx",
-      "components/navbar.tsx",
-      "components/copyright-year.tsx",
-      "components/support-actions.tsx"
+      "components/support-actions.tsx",
+      "components/liquid-shell.tsx"
     ]
   }
 }
