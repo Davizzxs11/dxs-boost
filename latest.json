@@ -1,8 +1,8 @@
 {
-    "schema":  1,
-    "product":  "DXSBoost",
-    "version":  "0.9.5.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.5.exe",
-    "notes":  "Depois de uma atualização, o app confirma a versão nova na primeira abertura e registra na Atividade.",
-    "sha256":  "3c8bf68886b5f8af06b6299ae850d845c513ee1e607eb99772e5d517e6fc331a"
+  "schema": 1,
+  "product": "DXSBoost",
+  "version": "0.9.4.0",
+  "downloadUrl": "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.2.exe",
+  "notes": "Nenhuma atualização nova no momento.",
+  "sha256": "e97db8ee9ccc7f0d87b5f2cd6d6f338a9d0dca3346239311e8fa0c76f0f9674c"
 }
