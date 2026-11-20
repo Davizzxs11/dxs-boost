@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.12.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.12.exe",
-    "notes":  "Conta DXS: entre com e-mail e senha, sem arquivo de licença nem código do PC.\n7 dias grátis para testar, sem cartão; depois R$ 10 por mês no cartão ou no Pix.\nUma conta, um PC por vez: formatou ou trocou de PC, é só entrar de novo.",
-    "sha256":  "da4e456cffcd6e952b626a3b9888b9cf4cec860e97f98e35313f50b698e771c3"
+    "version":  "0.9.13.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.13.exe",
+    "notes":  "Tela de login nova: o Reator DXS enche conforme você preenche, com ver senha, código em caixinhas e nome de usuário no cadastro.\nApp bem mais leve: a placa de vídeo usada com a tela parada caiu de cerca de 34% para 3%, e as animações não travam mais.",
+    "sha256":  "020472cdd3939fac409446812f889bc3d039dcb2df83debd9af73a1f97cdb067"
 }
