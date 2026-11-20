@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.8.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.8.exe",
-    "notes":  "Tela cheia em janela: o DXS ocupa a tela sem bordas e deixa a barra de tarefas à mostra (Opções, F11 ou busca).",
-    "sha256":  "fb7c37302e7c5a0d9f8207770ad068fa8ce9c79bcc33aaa0b822a5641f319afd"
+    "version":  "0.9.9.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.9.exe",
+    "notes":  "Corrige a busca de atualizações e a renovação da licença pela internet, que falhavam na conexão segura (TLS 1.2). Instale esta versão pelo site uma vez; as próximas chegam pelo próprio app.",
+    "sha256":  "d41bee65c82e36b8ffd96dbbd4cc14d17ce9c473223211d2fa16fc815403da2e"
 }
