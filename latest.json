@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.9.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.9.exe",
-    "notes":  "Corrige a busca de atualizações e a renovação da licença pela internet, que falhavam na conexão segura (TLS 1.2). Instale esta versão pelo site uma vez; as próximas chegam pelo próprio app.",
-    "sha256":  "d41bee65c82e36b8ffd96dbbd4cc14d17ce9c473223211d2fa16fc815403da2e"
+    "version":  "0.9.10.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.10.exe",
+    "notes":  "Textos do app mais limpos, sem pontos separadores e travessões.",
+    "sha256":  "29bfe001b8f5cf3d1f92daa7017f21d9bb3f6aa0f9b17b5655564029eb7b0d99"
 }
