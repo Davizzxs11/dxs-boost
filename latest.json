@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.10.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.10.exe",
-    "notes":  "Textos do app mais limpos, sem pontos separadores e travessões.",
-    "sha256":  "29bfe001b8f5cf3d1f92daa7017f21d9bb3f6aa0f9b17b5655564029eb7b0d99"
+    "version":  "0.9.11.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.11.exe",
+    "notes":  "A atualização pelo app fecha o DXS sozinha, mesmo quando a leitura de FPS demora para encerrar.",
+    "sha256":  "48c0c553e9a607fdb3e684663f1a784769dc5960ed9995642e9f73ecd86f051b"
 }
