@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.15.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.15.exe",
-    "notes":  "A aba Processos mostra a memória igual ao Gerenciador de Tarefas (antes contava bibliotecas compartilhadas e parecia bem maior).\nMinimizado ou na bandeja, o DXS devolve ao Windows a memória que não está usando.",
-    "sha256":  "aafa07d2c48fba04b33783bd781e9a17e0fa8dc401fa8a32e504d69a19975307"
+    "version":  "0.9.16.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.16.exe",
+    "notes":  "Aba Processos mais leve: a lista não é mais refeita a cada leitura, então a memória não sobe em serra e o processador usado cai cerca de 40%.",
+    "sha256":  "26f9aca5a4ab9d74d1521d6b7358081e19b9eb0fb77dec13b683b5d71b90dba9"
 }
