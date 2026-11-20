@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.7.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.7.exe",
-    "notes":  "Volta o instalador com o visual de pôr do sol, agora com o motor do Inno Setup por dentro, aceito pelos antivírus.",
-    "sha256":  "a04a6f6d3b83be898250f3d1c41e3cb519805cb1afc7164cd7a5609bed48f52c"
+    "version":  "0.9.8.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.8.exe",
+    "notes":  "Tela cheia em janela: o DXS ocupa a tela sem bordas e deixa a barra de tarefas à mostra (Opções, F11 ou busca).",
+    "sha256":  "fb7c37302e7c5a0d9f8207770ad068fa8ce9c79bcc33aaa0b822a5641f319afd"
 }
