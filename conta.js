@@ -11,7 +11,8 @@
 
   const store = {
     get() { try { return localStorage.getItem(KEY); } catch { return null; } },
-    set(v) { try { v ? localStorage.setItem(KEY, v) : localStorage.removeItem(KEY); } catch { } }
+    set(v) { try { if (v) localStorage.setItem(KEY, v); else { localStorage.removeItem(KEY); localStorage.removeItem(KEY + '-nome'); } } catch { } },
+    name(n) { try { n ? localStorage.setItem(KEY + '-nome', n) : localStorage.removeItem(KEY + '-nome'); } catch { } }
   };
   function view(name) { views.forEach(v => { $('view-' + v).hidden = v !== name; }); }
   function notice(text, ok) { const n = $('notice'); n.hidden = !text; n.textContent = text || ''; n.classList.toggle('ok', !!ok); }
@@ -41,7 +42,7 @@
     $('signin').textContent = signup ? 'Criar conta →' : 'Entrar →';
     $('signin-title').textContent = signup ? 'Comece com 7 dias grátis.' : 'Bem-vindo de volta.';
     $('signin-eyebrow').textContent = signup ? '01 / CRIE SUA CONTA' : '01 / ENTRE NA SUA CONTA';
-    $('terms-row').hidden = !signup; $('forgot').parentElement.hidden = signup;
+    $('terms-row').hidden = !signup; $('name-row').hidden = !signup; $('forgot').parentElement.hidden = signup;
     $('password').autocomplete = signup ? 'new-password' : 'current-password';
   }
   function showSignin() { stopPoll(); view('signin'); paintTabs(); }
@@ -53,14 +54,14 @@
     $('code').focus();
   }
   function showAccount(a) {
-    view('account');
+    view('account'); store.name(a.name || '');
     const labels = { teste: 'Teste grátis', pago: 'Assinatura ativa', cortesia: 'Acesso cortesia', nenhum: 'Sem assinatura' };
     $('acc-plan').textContent = labels[a.plan] || 'Sua conta';
     const now = Date.now() / 1000;
     $('acc-until').textContent = a.until && a.until > now
       ? (a.plan === 'teste' ? 'O teste vai até ' + date(a.until) + '. Depois, R$ 10 por mês.' : 'Vale até ' + date(a.until) + '.')
       : (a.trialUsed ? 'Seu teste grátis acabou. Assine para continuar usando o DXS Boost.' : 'Entre no app para começar seus 7 dias grátis.');
-    $('acc-email').textContent = a.email;
+    $('acc-email').textContent = a.name ? a.name + ' (' + a.email + ')' : a.email;
     $('acc-pc').textContent = a.pc ? 'PC conectado: ' + a.pc.name + '. A conta funciona em um PC por vez.' : 'Nenhum PC conectado ainda. Baixe o app e entre com esta conta.';
     const card = a.subscription && a.subscription.status === 'authorized';
     $('cancel-area').hidden = !card;
@@ -99,7 +100,9 @@
     if (signup) {
       if (password.length < 8) throw new Error('A senha precisa ter pelo menos 8 caracteres.');
       if (!$('terms').checked) throw new Error('Para criar a conta, concorde com os termos.');
-      await call('POST', '/v1/auth/signup', { email, password }); showCode('verify', email); return;
+      const name = $('name').value.trim();
+      if (name.length < 2) throw new Error('Escolha um nome de usuário com pelo menos 2 letras.');
+      await call('POST', '/v1/auth/signup', { email, password, name }); showCode('verify', email); return;
     }
     try {
       const r = await call('POST', '/v1/auth/login', { email, password, client: 'web' });
@@ -132,6 +135,13 @@
   $('pay-pix').onclick = () => work(async () => { const r = await call('POST', '/v1/billing/pix'); showPix(r.pix); });
   $('pix-copy').onclick = async () => { try { await navigator.clipboard.writeText($('pix-code').textContent); notice('Código Pix copiado.', true); } catch { notice('Selecione o código acima e copie.'); } };
   $('cancel').onclick = (e) => { e.preventDefault(); if (confirm('Cancelar a renovação no cartão? O mês já pago continua valendo.')) work(async () => { const r = await call('POST', '/v1/billing/cancel'); showAccount(r.account); notice('Renovação cancelada. Seu acesso vale até o fim do período pago.', true); }); };
+  $('rename').onclick = (e) => { e.preventDefault(); $('rename-row').hidden = false; let n = ''; try { n = localStorage.getItem(KEY + '-nome') || ''; } catch { } $('newname').value = n; $('newname').focus(); };
+  $('rename-cancel').onclick = () => { $('rename-row').hidden = true; };
+  $('rename-save').onclick = () => work(async () => {
+    const name = $('newname').value.trim(); if (name.length < 2) throw new Error('Use pelo menos 2 letras no nome.');
+    const r = await call('POST', '/v1/account/name', { name }); $('rename-row').hidden = true; showAccount(r.account); notice('Nome atualizado.', true);
+  });
+  $('newname').addEventListener('keydown', e => { if (e.key === 'Enter') $('rename-save').click(); });
   $('logout').onclick = () => work(async () => { try { await call('POST', '/v1/auth/logout'); } catch { } store.set(null); showSignin(); });
   ['email', 'password'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') $('signin').click(); }));
   $('code').addEventListener('keydown', e => { if (e.key === 'Enter') $('confirm').click(); });

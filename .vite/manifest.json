@@ -14,19 +14,19 @@
     "file": "_next/static/chunks/software-config-BVuI5DUD.js",
     "name": "software-config"
   },
-  "_vinext-YwWFJrxD.js": {
-    "file": "_next/static/chunks/vinext-YwWFJrxD.js",
+  "_vinext-BeHg4Nx3.js": {
+    "file": "_next/static/chunks/vinext-BeHg4Nx3.js",
     "name": "vinext",
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js"
     ],
     "dynamicImports": [
-      "_vinext-YwWFJrxD.js"
+      "_vinext-BeHg4Nx3.js"
     ]
   },
   "components/liquid-home.tsx": {
-    "file": "_next/static/chunks/liquid-home-OG02nY-H.js",
+    "file": "_next/static/chunks/liquid-home-BR_tJiJv.js",
     "name": "liquid-home",
     "src": "components/liquid-home.tsx",
     "isDynamicEntry": true,
@@ -38,7 +38,7 @@
     ]
   },
   "components/liquid-shell.tsx": {
-    "file": "_next/static/chunks/liquid-shell-hukHt0OS.js",
+    "file": "_next/static/chunks/liquid-shell-D-7Huyvo.js",
     "name": "liquid-shell",
     "src": "components/liquid-shell.tsx",
     "isDynamicEntry": true,
@@ -60,28 +60,28 @@
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-Dw_8TJu8.js",
+    "file": "_next/static/chunks/layout-segment-context-B56Nauq8.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-YwWFJrxD.js"
+      "_vinext-BeHg4Nx3.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-DJ7welt6.js",
+    "file": "_next/static/chunks/index-Br2NdcSq.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-YwWFJrxD.js"
+      "_vinext-BeHg4Nx3.js"
     ],
     "dynamicImports": [
-      "_vinext-YwWFJrxD.js",
+      "_vinext-BeHg4Nx3.js",
       "node_modules/vinext/dist/shims/layout-segment-context.js",
       "components/liquid-home.tsx",
       "components/support-actions.tsx",

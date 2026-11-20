@@ -5,7 +5,7 @@
 
 <div id="view-signin" hidden><div class="eyebrow" id="signin-eyebrow">01 / ENTRE NA SUA CONTA</div><h2 id="signin-title">Bem-vindo de volta.</h2>
 <div class="tabs" role="tablist"><button id="tab-login" class="tab" role="tab">Entrar</button><button id="tab-signup" class="tab" role="tab">Criar conta</button></div>
-<label class="label" for="email">E-mail</label><input id="email" type="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com">
+<div id="name-row" hidden><label class="label" for="name">Nome de usuário</label><input id="name" type="text" autocomplete="nickname" maxlength="24" placeholder="Como quer ser chamado"></div><label class="label" for="email">E-mail</label><input id="email" type="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com">
 <label class="label" for="password">Senha</label><input id="password" type="password" autocomplete="current-password" maxlength="200" placeholder="8 caracteres ou mais">
 <label class="check" id="terms-row" hidden><input id="terms" type="checkbox"><span>Li e concordo com os <a href="/termos">termos</a> e a <a href="/privacidade">privacidade</a>.</span></label>
 <div class="buttons"><button id="signin">Entrar →</button></div>
@@ -21,7 +21,7 @@
 <label class="label" for="forgot-email">E-mail da conta</label><input id="forgot-email" type="email" autocomplete="email" maxlength="254">
 <div class="buttons"><button id="forgot-send">Enviar código →</button></div><p class="small"><a href="#" id="forgot-back">Voltar para entrar</a></p></div>
 
-<div id="view-account" hidden><div class="eyebrow">SUA CONTA</div><h2 id="acc-plan"></h2><p id="acc-until" class="small"></p><p id="acc-email" class="small"></p><p id="acc-pc" class="small"></p>
+<div id="view-account" hidden><div class="eyebrow">SUA CONTA</div><h2 id="acc-plan"></h2><p id="acc-until" class="small"></p><p id="acc-email" class="small"></p><p class="small"><a href="#" id="rename">Trocar nome de usuário</a></p><div id="rename-row" hidden><label class="label" for="newname">Nome de usuário</label><input id="newname" type="text" maxlength="24" autocomplete="nickname" placeholder="Como quer ser chamado"><div class="buttons"><button id="rename-save">Salvar nome</button><button id="rename-cancel" class="secondary">Cancelar</button></div></div><p id="acc-pc" class="small"></p>
 <div id="pay-area"><div class="buttons"><button id="pay-card">Cartão, renova sozinho →</button><button id="pay-pix" class="secondary">Pix, 1 mês →</button></div><p class="small">R$ 10 por mês pelo Mercado Pago. No cartão a assinatura renova todo mês; no Pix você paga um mês e repete quando quiser.</p></div>
 <div id="pix" hidden><div class="label">Aponte a câmera do seu banco</div><img id="pix-qr" alt="QR Code do Pix de R$ 10" width="220" height="220" hidden><div class="label">Ou use o Pix Copia e Cola</div><div id="pix-code" class="notice code"></div><div class="buttons"><button id="pix-copy" class="secondary">Copiar código Pix</button></div><div class="notice">Esperando o pagamento cair. Deixe esta página aberta: ela avisa sozinha, e o DXS Boost libera em seguida.</div></div>
 <div id="cancel-area" hidden><p class="small">Assinatura no cartão ativa. <a href="#" id="cancel">Cancelar a renovação</a> (o mês pago continua valendo).</p></div>
