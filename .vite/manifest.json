@@ -14,19 +14,19 @@
     "file": "_next/static/chunks/software-config-u2ElD9V8.js",
     "name": "software-config"
   },
-  "_vinext-BZZxjn_V.js": {
-    "file": "_next/static/chunks/vinext-BZZxjn_V.js",
+  "_vinext-lRxtfNza.js": {
+    "file": "_next/static/chunks/vinext-lRxtfNza.js",
     "name": "vinext",
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js"
     ],
     "dynamicImports": [
-      "_vinext-BZZxjn_V.js"
+      "_vinext-lRxtfNza.js"
     ]
   },
   "components/liquid-home.tsx": {
-    "file": "_next/static/chunks/liquid-home-DyqGUPo6.js",
+    "file": "_next/static/chunks/liquid-home-DCcZRso0.js",
     "name": "liquid-home",
     "src": "components/liquid-home.tsx",
     "isDynamicEntry": true,
@@ -38,7 +38,7 @@
     ]
   },
   "components/liquid-shell.tsx": {
-    "file": "_next/static/chunks/liquid-shell-CmJdgmrd.js",
+    "file": "_next/static/chunks/liquid-shell-BrmxMFMj.js",
     "name": "liquid-shell",
     "src": "components/liquid-shell.tsx",
     "isDynamicEntry": true,
@@ -49,7 +49,7 @@
     ]
   },
   "components/support-actions.tsx": {
-    "file": "_next/static/chunks/support-actions-Bvk0zVrl.js",
+    "file": "_next/static/chunks/support-actions-JvMHqDwR.js",
     "name": "support-actions",
     "src": "components/support-actions.tsx",
     "isDynamicEntry": true,
@@ -60,28 +60,28 @@
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-C6KhpdG8.js",
+    "file": "_next/static/chunks/layout-segment-context-DLRrBhQN.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-BZZxjn_V.js"
+      "_vinext-lRxtfNza.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-CqIXV8-v.js",
+    "file": "_next/static/chunks/index-B9aKy11R.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-BZZxjn_V.js"
+      "_vinext-lRxtfNza.js"
     ],
     "dynamicImports": [
-      "_vinext-BZZxjn_V.js",
+      "_vinext-lRxtfNza.js",
       "node_modules/vinext/dist/shims/layout-segment-context.js",
       "components/liquid-home.tsx",
       "components/support-actions.tsx",

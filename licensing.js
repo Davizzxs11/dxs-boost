@@ -51,7 +51,7 @@
         notice(incomingAccess?'Tudo pronto. O DXS Boost já guardou seu código e vai ativar sozinho assim que a cobrança for aprovada. Pode seguir para o pagamento.':'Guarde o código de acesso antes de continuar. Cole esse código no app para ativar e receber as renovações.');
       } catch {notice('Permita o armazenamento local neste navegador para guardar o acesso à compra. Nenhuma cobrança foi iniciada.','error');}
     });
-    $('save-code').onclick=()=>download('DXS Boost — código de acesso privado\n\n'+current.access+'\n\nPC: '+current.device+'\nAtive no app: Minha licença > Ativar com código. As renovações chegam com internet.\nConsulta e arquivo: https://dxsboost.com.br/minha-licenca/\nNão compartilhe este código.\n','DXS-Guarde-seu-codigo.txt');
+    $('save-code').onclick=()=>download('DXS Boost: código de acesso privado\n\n'+current.access+'\n\nPC: '+current.device+'\nAtive no app: Minha licença > Ativar com código. As renovações chegam com internet.\nConsulta e arquivo: https://dxsboost.com.br/minha-licenca/\nNão compartilhe este código.\n','DXS-Guarde-seu-codigo.txt');
     $('consent').onchange=()=>{if($('consent').checked)notice('Tudo certo. Escolha como pagar: cartão (renova sozinho) ou Pix (um mês).');};
     $('pay').onclick=()=>action(async()=>{
       if(!$('consent').checked)throw Error('Confirme que guardou seu código e aceita a assinatura mensal.');

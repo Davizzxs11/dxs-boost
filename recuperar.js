@@ -90,7 +90,7 @@
     options.filter(o=>/^[a-f0-9]{16}$/.test(o?.ref||'')).forEach((o,i)=>{
       const label=document.createElement('label'),input=document.createElement('input'),text=document.createElement('span');
       label.className='check choice';input.type='radio';input.name='choice';input.value=o.ref;input.checked=i===0;
-      text.textContent='PC terminado em '+String(o.pc||'').replace(/[^A-F0-9]/g,'')+' · comprada em '+fmt(o.bought)+' · vale até '+fmt(o.expires);
+      text.textContent='PC terminado em '+String(o.pc||'').replace(/[^A-F0-9]/g,'')+', comprada em '+fmt(o.bought)+', vale até '+fmt(o.expires);
       label.append(input,text);list.append(label);
     });
     show('step-choose');
