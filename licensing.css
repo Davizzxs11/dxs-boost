@@ -62,8 +62,8 @@ p{color:var(--muted);margin:10px 0 22px}
 .label{display:block;margin:18px 0 8px;font:600 13px Sora,sans-serif;color:#DDE3FF}
 
 /* Campos em capsula: a borda acende no degrade ao focar */
-input[type=text],input[type=email],textarea{width:100%;font:inherit;color:var(--text);background:#0E1022;border:1px solid #342559;border-radius:18px;padding:14px 16px;outline:none;transition:border-color .25s,box-shadow .25s}
-input[type=text]:hover,input[type=email]:hover,textarea:hover{border-color:#523A8C}
+input[type=text],input[type=email],input[type=password],input[inputmode=numeric],textarea{width:100%;font:inherit;color:var(--text);background:#0E1022;border:1px solid #342559;border-radius:18px;padding:14px 16px;outline:none;transition:border-color .25s,box-shadow .25s}
+input[type=text]:hover,input[type=email]:hover,input[type=password]:hover,input[inputmode=numeric]:hover,textarea:hover{border-color:#523A8C}
 input:focus,textarea:focus{border-color:#4D7CFF;box-shadow:0 0 0 4px #4D7CFF26,0 0 30px #9B5CFF33}
 textarea{font:13px Consolas,monospace;resize:vertical}
 ::placeholder{color:var(--dim)}
@@ -126,3 +126,11 @@ footer a:hover{color:#fff}
   .price{font-size:58px}
   body:before{width:300px;height:300px;right:-110px;bottom:-120px}
 }
+
+/* Minha conta: abas Entrar / Criar conta e aviso de sucesso */
+.tabs{display:inline-flex;gap:4px;padding:4px;margin:6px 0 4px;border-radius:99px;background:#ffffff0c;border:1px solid #ffffff1c}
+.tabs .tab{min-height:40px;padding:0 20px;background:transparent;color:#C9BFEA;box-shadow:none;font-size:13px}
+.tabs .tab:hover{transform:none;background:#ffffff14;color:#fff;box-shadow:none}
+.tabs .tab.active{background:#F8FAFF;color:#0B1130}
+.notice.ok{background:#2EF2D014;border-color:#2EF2D055;color:#C8FFF4}
+[hidden]{display:none!important}
