@@ -14,15 +14,15 @@
     "file": "_next/static/chunks/software-config-BVuI5DUD.js",
     "name": "software-config"
   },
-  "_vinext-CaWJc_qa.js": {
-    "file": "_next/static/chunks/vinext-CaWJc_qa.js",
+  "_vinext-YwWFJrxD.js": {
+    "file": "_next/static/chunks/vinext-YwWFJrxD.js",
     "name": "vinext",
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js"
     ],
     "dynamicImports": [
-      "_vinext-CaWJc_qa.js"
+      "_vinext-YwWFJrxD.js"
     ]
   },
   "components/liquid-home.tsx": {
@@ -60,28 +60,28 @@
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-Bq1t9N3r.js",
+    "file": "_next/static/chunks/layout-segment-context-Dw_8TJu8.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-CaWJc_qa.js"
+      "_vinext-YwWFJrxD.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-BRs2Wd-R.js",
+    "file": "_next/static/chunks/index-DJ7welt6.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-CaWJc_qa.js"
+      "_vinext-YwWFJrxD.js"
     ],
     "dynamicImports": [
-      "_vinext-CaWJc_qa.js",
+      "_vinext-YwWFJrxD.js",
       "node_modules/vinext/dist/shims/layout-segment-context.js",
       "components/liquid-home.tsx",
       "components/support-actions.tsx",

@@ -2,7 +2,8 @@
 (() => {
   'use strict';
   const config = window.DXS_LICENSE_CONFIG || {};
-  const api = String(config.accountApi || '').replace(/\/$/, '');
+  // Endereço fixo de reserva: um licensing-config.js antigo no cache não pode desligar as contas.
+  const api = String(config.accountApi || 'https://dxs-contas.dxs-contas.workers.dev').replace(/\/$/, '');
   const $ = (id) => document.getElementById(id);
   const KEY = 'dxs-conta';
   const views = ['loading', 'signin', 'code', 'forgot', 'account'];
