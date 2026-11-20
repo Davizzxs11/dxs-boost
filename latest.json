@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.6.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.6.exe",
-    "notes":  "Instalador volta a usar o Inno Setup, aceito pelos antivírus: corrige instalações que o Kaspersky interrompia.\nO app avisa quando sai versão nova e atualiza com um toque, conferindo o arquivo pelo SHA-256.",
-    "sha256":  "7a29c15a5c66d700cf588be066c67b75da82d6421e5dbdb989830732b4ce84bf"
+    "version":  "0.9.7.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.7.exe",
+    "notes":  "Volta o instalador com o visual de pôr do sol, agora com o motor do Inno Setup por dentro, aceito pelos antivírus.",
+    "sha256":  "a04a6f6d3b83be898250f3d1c41e3cb519805cb1afc7164cd7a5609bed48f52c"
 }
