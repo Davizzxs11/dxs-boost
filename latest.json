@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.13.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.13.exe",
-    "notes":  "Tela de login nova: o Reator DXS enche conforme você preenche, com ver senha, código em caixinhas e nome de usuário no cadastro.\nApp bem mais leve: a placa de vídeo usada com a tela parada caiu de cerca de 34% para 3%, e as animações não travam mais.",
-    "sha256":  "020472cdd3939fac409446812f889bc3d039dcb2df83debd9af73a1f97cdb067"
+    "version":  "0.9.14.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.14.exe",
+    "notes":  "Aba Processos cerca de 80 vezes mais leve: o próprio DXS não aparece mais pesando na lista.\nO DXS não abre mais processos do Windows (como os de segurança do sistema), o que evitava alarme falso de antivírus.",
+    "sha256":  "4911d701fd1a5ce9ed8885663c2486df208b5955ec544a3d8ed02a0fb324d498"
 }
