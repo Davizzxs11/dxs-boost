@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Painel | DXS Boost</title>
+<link rel="icon" href="/images/logo.png">
+<script src="/licensing-config.js?v=0.9.17" defer></script>
+<style>
+@font-face { font-family: Sora; font-weight: 800; font-display: swap; src: url(/fonts/sora-800.ttf); }
+@font-face { font-family: Sora; font-weight: 700; font-display: swap; src: url(/fonts/sora-700.ttf); }
+@font-face { font-family: Inter; font-weight: 500; font-display: swap; src: url(/fonts/inter-500.ttf); }
+@font-face { font-family: Inter; font-weight: 600; font-display: swap; src: url(/fonts/inter-600.ttf); }
+:root { --bg: #08051A; --panel: #110B25; --panel2: #160F30; --line: #ffffff14; --line2: #ffffff22; --ink: #F2EEFC; --soft: #A79DC6; --mute: #7D73A0;
+  --c1: #2EF2D0; --c3: #9B5CFF; --c4: #FF4FD8; --liquid: linear-gradient(100deg, #2EF2D0, #4D7CFF 35%, #9B5CFF 65%, #FF4FD8);
+  --good: #3DDC97; --warn: #FFC83D; --bad: #FF5470; --serious: #FF8A3D; --mark: #9B5CFF; --mark-hi: #B994FF; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--bg); color: var(--ink); font: 500 14px/1.45 Inter, 'Segoe UI', sans-serif; }
+h1, h2, h3 { font-family: Sora, Inter, sans-serif; margin: 0; letter-spacing: -.02em; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+.app { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: 100vh; }
+
+/* barra lateral */
+.side { position: sticky; top: 0; height: 100vh; padding: 20px 14px; border-right: 1px solid var(--line); background: #0B0720; display: flex; flex-direction: column; gap: 4px; }
+.brand { display: flex; align-items: center; gap: 10px; padding: 4px 10px 22px; font: 800 15px Sora; text-decoration: none; }
+.brand .m { width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, #B48CFF, #7B3FF2); display: grid; place-items: center; }
+.brand small { display: block; font: 600 11px Inter; color: var(--mute); letter-spacing: .5px; }
+.nav { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 0; text-decoration: none; border-radius: 10px; background: none; color: var(--soft); font: 600 14px Inter; cursor: pointer; text-align: left; }
+.nav svg { width: 18px; height: 18px; flex: none; }
+.nav:hover { background: #ffffff08; color: var(--ink); }
+.nav.on { background: #9B5CFF1f; color: #fff; box-shadow: inset 3px 0 0 var(--c3); }
+.nav .count { margin-left: auto; min-width: 22px; padding: 1px 7px; border-radius: 99px; background: #FFC83D26; color: var(--warn); font-size: 12px; text-align: center; }
+.side .grow { flex: 1; }
+.me { display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 12px; border: 1px solid var(--line); }
+.av { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--liquid); color: #08051A; font: 800 13px Sora; flex: none; }
+.me b { display: block; font-size: 13px; } .me span { color: var(--mute); font-size: 12px; }
+
+/* topo */
+main { min-width: 0; padding: 26px 32px 60px; }
+.top { display: flex; align-items: center; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
+.top h1 { font-size: 26px; }
+.top .sub { color: var(--mute); font-size: 13px; }
+.top .grow { flex: 1; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 10px; border: 1px solid var(--line2); background: var(--panel2); color: var(--ink); font: 600 13px Inter; cursor: pointer; text-decoration: none; }
+.btn:hover { border-color: #9B5CFF88; }
+.btn svg { width: 15px; height: 15px; }
+.btn.spin svg { animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.demo { padding: 6px 10px; border-radius: 8px; background: #FFC83D26; color: var(--warn); font: 700 12px Inter; }
+
+/* indicadores */
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-bottom: 14px; }
+.kpi { padding: 18px 18px 16px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); position: relative; overflow: hidden; }
+.kpi .lb { display: flex; align-items: center; gap: 8px; color: var(--soft); font-size: 13px; font-weight: 600; }
+.kpi .lb i { width: 8px; height: 8px; border-radius: 50%; }
+.kpi .v { margin-top: 10px; font: 800 30px Sora; letter-spacing: -.03em; }
+.kpi .d { margin-top: 4px; color: var(--mute); font-size: 12.5px; }
+.kpi .d b { color: var(--good); font-weight: 600; }
+.kpi.click { cursor: pointer; } .kpi.click:hover { border-color: var(--line2); }
+
+/* cartões e gráficos */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 14px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 20px; min-width: 0; }
+.card h2 { font-size: 15px; } .card .hint { color: var(--mute); font-size: 12.5px; margin-top: 2px; }
+.card .head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; margin-bottom: 18px; }
+.s8 { grid-column: span 8; } .s4 { grid-column: span 4; } .s6 { grid-column: span 6; } .s12 { grid-column: span 12; }
+.bars { position: relative; height: 190px; display: flex; align-items: flex-end; gap: 2px; padding-left: 28px; }
+.bars .gl { position: absolute; left: 28px; right: 0; border-top: 1px dashed #ffffff10; }
+.bars .gl span { position: absolute; left: -28px; top: -8px; width: 22px; text-align: right; color: var(--mute); font-size: 11px; }
+.bars .b { flex: 1; position: relative; height: 100%; display: flex; align-items: flex-end; cursor: default; }
+.bars .b i { display: block; width: 100%; border-radius: 4px 4px 0 0; background: var(--mark); min-height: 2px; transition: background .15s; }
+.bars .b.zero i { background: #ffffff14; }
+.bars .b:hover i { background: var(--mark-hi); }
+.xl { display: flex; justify-content: space-between; padding: 8px 0 0 28px; color: var(--mute); font-size: 11.5px; }
+.hb { display: grid; gap: 12px; }
+.hb .r { display: grid; grid-template-columns: 130px minmax(0, 1fr) 70px; align-items: center; gap: 12px; }
+.hb .r span { color: var(--soft); font-size: 13px; }
+.hb .t { height: 10px; border-radius: 5px; background: #ffffff0c; overflow: hidden; }
+.hb .t i { display: block; height: 100%; border-radius: 0 4px 4px 0; background: var(--mark); }
+.hb .r b { text-align: right; font: 700 14px Sora; } .hb .r b small { color: var(--mute); font: 600 11px Inter; margin-left: 4px; }
+
+/* tabelas */
+.tools { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 14px; }
+.search { position: relative; flex: 1 1 260px; max-width: 380px; }
+.search input { width: 100%; padding: 10px 12px 10px 36px; border-radius: 10px; border: 1px solid var(--line2); background: var(--panel2); color: var(--ink); font: 500 14px Inter; outline: none; }
+.search input:focus { border-color: var(--c3); box-shadow: 0 0 0 3px #9B5CFF33; }
+.search svg { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--mute); }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { padding: 7px 12px; border-radius: 99px; border: 1px solid var(--line2); background: none; color: var(--soft); font: 600 12.5px Inter; cursor: pointer; }
+.chip.on { background: #9B5CFF26; border-color: #9B5CFF88; color: #fff; }
+.chip em { font-style: normal; color: var(--mute); margin-left: 4px; }
+.tw { overflow-x: auto; border-radius: 14px; border: 1px solid var(--line); background: var(--panel); }
+table { width: 100%; border-collapse: collapse; min-width: 760px; }
+th { text-align: left; padding: 12px 16px; color: var(--mute); font: 600 12px Inter; letter-spacing: .3px; text-transform: uppercase; border-bottom: 1px solid var(--line); white-space: nowrap; user-select: none; }
+th.sort { cursor: pointer; } th.sort:hover { color: var(--ink); }
+th .ar { margin-left: 4px; opacity: .8; }
+td { padding: 12px 16px; border-bottom: 1px solid #ffffff0a; vertical-align: middle; }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05; }
+.who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.who .av { width: 28px; height: 28px; font-size: 12px; }
+.who b { display: block; font-weight: 600; } .who span { color: var(--mute); font-size: 12.5px; }
+.muted { color: var(--mute); }
+.empty { padding: 40px; text-align: center; color: var(--mute); }
+.badge { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 99px; font: 600 12px Inter; white-space: nowrap; border: 1px solid transparent; }
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.b-good { color: var(--good); background: #3DDC971a; } .b-warn { color: var(--warn); background: #FFC83D1a; } .b-bad { color: var(--bad); background: #FF54701a; }
+.b-serious { color: var(--serious); background: #FF8A3D1a; } .b-info { color: #C3A6FF; background: #9B5CFF22; } .b-cyan { color: var(--c1); background: #2EF2D01a; } .b-mute { color: var(--soft); background: #ffffff0d; }
+.dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ffffff2a; margin-right: 8px; }
+.dot.on { background: var(--good); box-shadow: 0 0 0 3px #3DDC9726; }
+.list { display: grid; gap: 2px; }
+.li { display: flex; align-items: center; gap: 12px; padding: 10px 8px; border-radius: 10px; cursor: pointer; }
+.li:hover { background: #ffffff06; }
+.li .grow { flex: 1; min-width: 0; } .li .grow b { display: block; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; } .li .grow span { color: var(--mute); font-size: 12.5px; }
+.li .r { text-align: right; color: var(--soft); font-size: 12.5px; white-space: nowrap; }
+
+/* entrada, gaveta, dica */
+.gate { max-width: 460px; margin: 12vh auto; text-align: center; padding: 40px 30px; border-radius: 20px; background: var(--panel); border: 1px solid var(--line); }
+.gate h1 { font-size: 24px; margin: 14px 0 10px; } .gate p { color: var(--soft); margin: 0 0 22px; }
+.gate .btn { padding: 12px 20px; background: #F8FAFF; color: #0B1130; border: 0; }
+.shade { position: fixed; inset: 0; background: #0008; z-index: 40; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(520px, 100%); z-index: 41; background: #0E0922; border-left: 1px solid var(--line2); overflow-y: auto; padding: 24px; box-shadow: -30px 0 80px #0009; }
+.drawer .x { float: right; }
+.drawer h2 { font-size: 22px; margin-top: 8px; }
+.drawer .em { color: var(--soft); margin-top: 2px; word-break: break-all; }
+.drawer h3 { font-size: 13px; color: var(--mute); text-transform: uppercase; letter-spacing: .5px; margin: 26px 0 10px; font-family: Inter; }
+.kv { display: grid; grid-template-columns: 140px 1fr; gap: 8px 14px; }
+.kv span { color: var(--mute); }
+.code { display: flex; gap: 8px; align-items: center; margin-top: 8px; padding: 10px 12px; border-radius: 10px; background: #0A0618; border: 1px dashed var(--line2); font: 500 12px Consolas, monospace; color: var(--soft); word-break: break-all; }
+.tip { position: fixed; z-index: 60; pointer-events: none; padding: 8px 10px; border-radius: 8px; background: #F2EEFC; color: #110B25; font: 600 12.5px Inter; box-shadow: 0 10px 30px #0008; transform: translate(-50%, calc(-100% - 10px)); white-space: nowrap; }
+.toast { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 70; padding: 12px 16px; border-radius: 12px; background: #2a1030; border: 1px solid #FF547066; color: #FFD3DB; }
+.note { margin-top: 14px; color: var(--mute); font-size: 12.5px; }
+
+@media (max-width: 1200px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .s8, .s4, .s6 { grid-column: span 12; } }
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; }
+  .side { position: sticky; top: 0; z-index: 30; height: auto; flex-direction: row; overflow-x: auto; padding: 10px; gap: 4px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .brand, .side .grow, .me { display: none; }
+  .nav { width: auto; white-space: nowrap; padding: 8px 12px; } .nav svg { display: none; } .nav.on { box-shadow: inset 0 -2px 0 var(--c3); }
+  main { padding: 18px 16px 50px; }
+  .kpi .v { font-size: 24px; }
+  .hb .r { grid-template-columns: 100px minmax(0, 1fr) 56px; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="/"><span class="m"><svg width="12" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2L16 16M16 2L2 16" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg></span><span>DXS BOOST<small>PAINEL DO DONO</small></span></a>
+    <button class="nav on" data-view="geral"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg>Visão geral</button>
+    <button class="nav" data-view="contas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5-4-5.5"/></svg>Contas</button>
+    <button class="nav" data-view="assinaturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></svg>Assinaturas<span class="count" id="pendCount" hidden></span></button>
+    <button class="nav" data-view="pagamentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pagamentos</button>
+    <button class="nav" data-view="pcs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>PCs</button>
+    <div class="grow"></div>
+    <a class="nav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>Ver o site</a>
+    <div class="me" id="me" hidden></div>
+  </aside>
+
+  <main>
+    <div class="gate" id="gate" hidden></div>
+    <div id="content" hidden>
+      <div class="top">
+        <div><h1 id="title">Visão geral</h1><div class="sub" id="updated"></div></div>
+        <div class="grow"></div>
+        <span class="demo" id="demoTag" hidden>DADOS DE DEMONSTRAÇÃO</span>
+        <button class="btn" id="reload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7L21 8M21 3v5h-5"/></svg>Atualizar</button>
+      </div>
+
+      <section data-panel="geral">
+        <div class="kpis" id="kpis"></div>
+        <div class="grid">
+          <div class="card s8"><div class="head"><div><h2>Contas novas por dia</h2><div class="hint">Últimos 30 dias</div></div></div><div id="chartNew"></div></div>
+          <div class="card s4"><div class="head"><div><h2>Planos agora</h2><div class="hint">Situação de cada conta neste momento</div></div></div><div id="chartPlans"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Do cadastro à assinatura</h2><div class="hint">Quantas contas chegaram em cada etapa</div></div></div><div id="chartFunnel"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Precisa de atenção</h2><div class="hint">Pagamentos parados e acessos que vencem logo</div></div></div><div class="list" id="attention"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Últimos pagamentos</h2></div><button class="btn" data-go="pagamentos">Ver todos</button></div><div class="list" id="lastPays"></div></div>
+          <div class="card s6"><div class="head"><div><h2>PCs usando agora</h2><div class="hint">App aberto nos últimos 17 minutos</div></div><button class="btn" data-go="pcs">Ver todos</button></div><div class="list" id="liveNow"></div></div>
+        </div>
+      </section>
+
+      <section data-panel="contas" hidden>
+        <div class="tools">
+          <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar por nome, e-mail ou PC" autocomplete="off"></label>
+          <div class="chips" id="planChips"></div>
+          <div class="grow" style="flex:1"></div>
+          <button class="btn" id="csv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Exportar CSV</button>
+        </div>
+        <div class="tw"><table><thead><tr>
+          <th class="sort" data-sort="name">Conta</th><th class="sort" data-sort="plan">Plano</th><th class="sort" data-sort="until">Acesso até</th>
+          <th class="sort" data-sort="seen">PC conectado</th><th class="sort" data-sort="created">Criada</th></tr></thead><tbody id="usersBody"></tbody></table></div>
+      </section>
+
+      <section data-panel="assinaturas" hidden>
+        <div class="kpis" id="subKpis"></div>
+        <div class="grid">
+          <div class="card s6"><div class="head"><div><h2>Pendentes</h2><div class="hint">Começaram a pagar e não terminaram</div></div></div><div class="list" id="subPending"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Vencem nos próximos 7 dias</h2><div class="hint">Teste, Pix e cortesia perto do fim</div></div></div><div class="list" id="subEnding"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Assinantes</h2><div class="hint">Acesso pago agora</div></div></div><div class="list" id="subActive"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Canceladas ou pausadas</h2><div class="hint">Cartão que não renova mais</div></div></div><div class="list" id="subCancelled"></div></div>
+        </div>
+      </section>
+
+      <section data-panel="pagamentos" hidden>
+        <div class="tools"><div class="chips" id="payChips"></div></div>
+        <div class="tw"><table><thead><tr><th>Data</th><th>Conta</th><th>Forma</th><th>Situação</th><th>Valor</th><th>Mês liberado</th></tr></thead><tbody id="paysBody"></tbody></table></div>
+      </section>
+
+      <section data-panel="pcs" hidden>
+        <div class="kpis" id="pcKpis"></div>
+        <div class="tw"><table><thead><tr><th>PC</th><th>Conta</th><th>Último uso</th><th>Situação</th></tr></thead><tbody id="pcsBody"></tbody></table></div>
+        <p class="note">Cada linha é um PC que já entrou em alguma conta. Downloads do instalador não são contados: o arquivo sai direto do site, sem estatística.</p>
+      </section>
+    </div>
+  </main>
+</div>
+<div class="shade" id="shade" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-label="Detalhes da conta"></aside>
+<div class="tip" id="tip" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s) => document.querySelector(s), $$ = (s) => [...document.querySelectorAll(s)];
+  const esc = (v) => String(v == null ? '' : v).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const DAY = 86400, ONLINE = 17 * 60;
+  const demo = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) && new URLSearchParams(location.search).has('demo');
+  let data = null, view = 'geral', plan = 'todos', pay = 'todos', query = '', sort = { key: 'created', dir: -1 }, loading = false, loadedAt = 0;
+
+  // ---------- formatos ----------
+  const fDate = (s) => s ? new Date(s * 1000).toLocaleDateString('pt-BR') : '-';
+  const fFull = (s) => s ? new Date(s * 1000).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '-';
+  const money = (n) => n.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const plural = (n, a, b) => n + ' ' + (n === 1 ? a : b);
+  function ago(s) {
+    if (!s) return '-'; const d = data.now - s;
+    if (d < 90) return 'agora'; if (d < 3600) return 'há ' + Math.round(d / 60) + ' min'; if (d < DAY) return 'há ' + Math.round(d / 3600) + ' h';
+    if (d < 30 * DAY) return 'há ' + plural(Math.round(d / DAY), 'dia', 'dias'); return fDate(s);
+  }
+  function left(s) {
+    if (!s) return '-'; const d = s - data.now;
+    if (d <= 0) return 'venceu ' + ago(s);
+    if (d < DAY) return 'termina em ' + Math.max(1, Math.round(d / 3600)) + ' h';
+    return fDate(s) + ' <span class="muted">(' + plural(Math.ceil(d / DAY), 'dia', 'dias') + ')</span>';
+  }
+  function expiresIn(s) {
+    const d = (s || 0) - data.now;
+    if (d <= 0) return 'venceu'; if (d < 3600) return 'vence em ' + Math.ceil(d / 60) + ' min'; if (d < DAY) return 'vence em ' + Math.round(d / 3600) + ' h';
+    return 'vence ' + fDate(s);
+  }
+  const online = (seen) => seen && data.now - seen < ONLINE;
+  const PLANS = { pago: ['Assinante', 'b-good'], teste: ['Em teste', 'b-info'], cortesia: ['Cortesia', 'b-cyan'], nenhum: ['Sem plano', 'b-mute'] };
+  const planBadge = (p) => '<span class="badge ' + (PLANS[p] || PLANS.nenhum)[1] + '">' + (PLANS[p] || PLANS.nenhum)[0] + '</span>';
+  const PAY = { approved: ['Aprovado', 'b-good'], authorized: ['Aprovado', 'b-good'], pending: ['Aguardando', 'b-warn'], in_process: ['Em análise', 'b-warn'],
+    rejected: ['Recusado', 'b-bad'], cancelled: ['Cancelado', 'b-mute'], expired: ['Expirou', 'b-mute'], refunded: ['Estornado', 'b-serious'], charged_back: ['Contestado', 'b-serious'] };
+  const payState = (p) => p.status === 'pending' && p.kind === 'pix' && p.expires && p.expires <= data.now ? 'expired' : p.status;
+  const payBadge = (p) => { const s = PAY[payState(p)] || [p.status, 'b-mute']; return '<span class="badge ' + s[1] + '">' + esc(s[0]) + '</span>'; };
+  const SUB = { authorized: 'cartão ativo', pending: 'cartão pendente', paused: 'cartão pausado', cancelled: 'cartão cancelado' };
+  const avatar = (u) => '<span class="av">' + esc((u.name || u.email || '?').charAt(0).toUpperCase()) + '</span>';
+  const who = (u) => '<div class="who">' + avatar(u) + '<div style="min-width:0"><b>' + esc(u.name) + '</b><span>' + esc(u.email) + '</span></div></div>';
+
+  // ---------- números ----------
+  function stats() {
+    const u = data.users, t = data.now, P = data.price, by = (p) => u.filter((x) => x.plan === p).length;
+    const month = new Date(); month.setDate(1); month.setHours(0, 0, 0, 0);
+    const approved = data.payments.filter((p) => p.status === 'approved' || p.status === 'authorized');
+    const paidMonth = approved.filter((p) => p.created >= month / 1000);
+    const pendCard = u.filter((x) => x.subStatus === 'pending' && x.plan !== 'pago');
+    const pendPix = data.payments.filter((p) => p.kind === 'pix' && p.status === 'pending' && p.expires > t);
+    const trialed = u.filter((x) => x.trialEnd > 0).length, converted = u.filter((x) => x.paidUntil).length;
+    return {
+      total: u.length, new7: u.filter((x) => t - x.created < 7 * DAY).length, paid: by('pago'), trial: by('teste'), comp: by('cortesia'), none: by('nenhum'),
+      trialSoon: u.filter((x) => x.plan === 'teste' && x.until - t < 2 * DAY).length, mrr: by('pago') * P,
+      monthTotal: paidMonth.length * P, monthCount: paidMonth.length, pendCard, pendPix, pending: pendCard.length + pendPix.length,
+      online: data.pcs.filter((p) => p.active && online(p.seen)).length, day: data.pcs.filter((p) => t - p.seen < DAY).length,
+      week: data.pcs.filter((p) => t - p.seen < 7 * DAY).length, trialed, converted, conversion: trialed ? Math.round(100 * converted / trialed) : 0,
+      verified: u.filter((x) => x.verified).length, inApp: u.filter((x) => x.pcs > 0 || x.trialEnd != null).length
+    };
+  }
+  const kpi = (label, color, value, detail, go) => '<div class="kpi' + (go ? ' click" data-go="' + go : '') + '"><div class="lb"><i style="background:' + color + '"></i>' + label + '</div><div class="v">' + value + '</div><div class="d">' + detail + '</div></div>';
+
+  // ---------- gráficos ----------
+  function barChart(el, points) {
+    const max = Math.max(1, ...points.map((p) => p.v)), step = Math.max(1, Math.ceil(max / 3));
+    const top = step * 3, lines = [0, 1, 2, 3].map((i) => '<div class="gl" style="bottom:' + (100 * i / 3) + '%"><span>' + (step * i) + '</span></div>').join('');
+    el.innerHTML = '<div class="bars" role="img" aria-label="Contas novas por dia nos últimos 30 dias">' + lines + points.map((p) =>
+      '<div class="b' + (p.v ? '' : ' zero') + '" data-tip="' + esc(p.label + ': ' + plural(p.v, 'conta nova', 'contas novas')) + '"><i style="height:' + Math.max(1, 100 * p.v / top) + '%"></i></div>').join('') + '</div>' +
+      '<div class="xl"><span>' + esc(points[0].label) + '</span><span>' + esc(points[Math.floor(points.length / 2)].label) + '</span><span>hoje</span></div>';
+  }
+  function hBars(el, rows, base) {
+    const max = Math.max(1, base || Math.max(...rows.map((r) => r[1])));
+    el.innerHTML = '<div class="hb">' + rows.map(([label, v, extra]) => '<div class="r" data-tip="' + esc(label + ': ' + v) + '"><span>' + esc(label) + '</span><div class="t"><i style="width:' + (100 * v / max) + '%"></i></div><b>' + v + (extra ? '<small>' + extra + '</small>' : '') + '</b></div>').join('') + '</div>';
+  }
+
+  // ---------- telas ----------
+  function renderGeral(s) {
+    $('#kpis').innerHTML = [
+      kpi('Contas', 'var(--c3)', s.total, '<b>+' + s.new7 + '</b> nos últimos 7 dias', 'contas'),
+      kpi('Assinantes', 'var(--good)', s.paid, money(s.mrr) + ' por mês', 'assinaturas'),
+      kpi('Em teste grátis', '#C3A6FF', s.trial, plural(s.trialSoon, 'termina', 'terminam') + ' em até 2 dias', 'contas'),
+      kpi('Recebido este mês', 'var(--c1)', money(s.monthTotal), plural(s.monthCount, 'pagamento aprovado', 'pagamentos aprovados'), 'pagamentos'),
+      kpi('Pagamentos pendentes', 'var(--warn)', s.pending, s.pendCard.length + ' no cartão, ' + s.pendPix.length + ' no Pix', 'assinaturas'),
+      kpi('Conversão do teste', 'var(--c4)', s.conversion + '%', s.converted + ' de ' + s.trialed + ' que testaram assinaram'),
+      kpi('PCs usando agora', 'var(--good)', s.online, s.day + ' hoje, ' + s.week + ' na semana', 'pcs'),
+      kpi('PCs que já testaram', 'var(--soft)', data.trialPcs, 'cada PC só tem um teste')
+    ].join('');
+    const pts = []; const today = new Date(); today.setHours(0, 0, 0, 0);
+    for (let i = 29; i >= 0; i--) {
+      const d0 = today / 1000 - i * DAY, d1 = d0 + DAY, d = new Date(d0 * 1000);
+      pts.push({ label: d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }), v: data.users.filter((u) => u.created >= d0 && u.created < d1).length });
+    }
+    barChart($('#chartNew'), pts);
+    hBars($('#chartPlans'), [['Assinantes', s.paid], ['Em teste', s.trial], ['Cortesia', s.comp], ['Sem plano', s.none]], s.total);
+    const pct = (n) => s.total ? Math.round(100 * n / s.total) + '%' : '';
+    hBars($('#chartFunnel'), [['Criaram conta', s.total, ''], ['Confirmaram e-mail', s.verified, pct(s.verified)], ['Entraram no app', s.inApp, pct(s.inApp)], ['Assinaram', s.converted, pct(s.converted)]], s.total);
+    const att = [];
+    s.pendPix.forEach((p) => att.push([p.created, '<span class="badge b-warn">Pix aguardando</span>', esc(p.email), 'gerado ' + ago(p.created), p.email]));
+    s.pendCard.forEach((u) => att.push([u.created, '<span class="badge b-warn">Cartão pendente</span>', esc(u.name) + ' <span class="muted">' + esc(u.email) + '</span>', 'não concluiu o checkout', u.email]));
+    data.users.filter((u) => u.plan === 'teste' && u.until - data.now < 2 * DAY).forEach((u) => att.push([u.until, '<span class="badge b-info">Teste acabando</span>', esc(u.name) + ' <span class="muted">' + esc(u.email) + '</span>', left(u.until), u.email]));
+    $('#attention').innerHTML = att.length ? att.slice(0, 7).map((a) => '<div class="li" data-user="' + esc(a[4]) + '">' + a[1] + '<div class="grow"><b>' + a[2] + '</b></div><div class="r">' + a[3] + '</div></div>').join('') : '<div class="empty">Nada parado. Tudo em dia.</div>';
+    $('#lastPays').innerHTML = data.payments.length ? data.payments.slice(0, 6).map((p) => '<div class="li" data-user="' + esc(p.email) + '">' + payBadge(p) + '<div class="grow"><b>' + esc(p.email) + '</b><span>' + (p.kind === 'pix' ? 'Pix' : 'Cartão') + '</span></div><div class="r">' + money(data.price) + '<br>' + ago(p.created) + '</div></div>').join('') : '<div class="empty">Nenhum pagamento ainda.</div>';
+    const live = data.users.filter((u) => u.pc && online(u.pc.seen));
+    $('#liveNow').innerHTML = live.length ? live.slice(0, 8).map((u) => '<div class="li" data-user="' + esc(u.email) + '"><span class="dot on"></span><div class="grow"><b>' + esc(u.pc.name || u.pc.id) + '</b><span>' + esc(u.name) + ', ' + esc(u.email) + '</span></div>' + planBadge(u.plan) + '</div>').join('') : '<div class="empty">Ninguém com o app aberto agora.</div>';
+  }
+
+  function filteredUsers() {
+    const q = query.trim().toLowerCase(), t = data.now;
+    let list = data.users.filter((u) => {
+      if (plan === 'pendente' ? !(u.subStatus === 'pending' && u.plan !== 'pago') : plan === 'naoconf' ? u.verified : plan !== 'todos' && u.plan !== plan) return false;
+      return !q || [u.name, u.email, u.pc && u.pc.name, u.pc && u.pc.id].some((v) => v && String(v).toLowerCase().includes(q));
+    });
+    const key = { name: (u) => (u.name || '').toLowerCase(), plan: (u) => ['pago', 'teste', 'cortesia', 'nenhum'].indexOf(u.plan), until: (u) => u.until || 0, seen: (u) => u.pc ? u.pc.seen : 0, created: (u) => u.created }[sort.key];
+    return list.sort((a, b) => (key(a) > key(b) ? 1 : key(a) < key(b) ? -1 : 0) * sort.dir);
+  }
+  function renderContas(s) {
+    const n = (p) => p === 'todos' ? data.users.length : p === 'pendente' ? s.pendCard.length : p === 'naoconf' ? data.users.length - s.verified : data.users.filter((u) => u.plan === p).length;
+    $('#planChips').innerHTML = [['todos', 'Todas'], ['pago', 'Assinantes'], ['teste', 'Em teste'], ['cortesia', 'Cortesia'], ['nenhum', 'Sem plano'], ['pendente', 'Cartão pendente'], ['naoconf', 'Sem confirmar']]
+      .map(([k, l]) => '<button class="chip' + (plan === k ? ' on' : '') + '" data-plan="' + k + '">' + l + '<em>' + n(k) + '</em></button>').join('');
+    $$('th.sort').forEach((th) => { th.innerHTML = th.textContent.replace(/[↑↓]/g, '').trim() + (th.dataset.sort === sort.key ? '<span class="ar">' + (sort.dir > 0 ? '↑' : '↓') + '</span>' : ''); });
+    const list = filteredUsers();
+    $('#usersBody').innerHTML = list.length ? list.map((u) => '<tr class="row" data-user="' + esc(u.email) + '"><td>' + who(u) + '</td><td>' + planBadge(u.plan) +
+      (!u.verified ? ' <span class="badge b-mute">sem confirmar</span>' : '') + (u.subStatus === 'pending' && u.plan !== 'pago' ? ' <span class="badge b-warn">cartão pendente</span>' : '') + '</td><td>' + (u.until ? left(u.until) : '<span class="muted">-</span>') +
+      '</td><td>' + (u.pc ? '<span class="dot' + (online(u.pc.seen) ? ' on' : '') + '"></span>' + esc(u.pc.name || u.pc.id) + ' <span class="muted">' + ago(u.pc.seen) + '</span>' : '<span class="muted">nenhum</span>') +
+      '</td><td>' + fDate(u.created) + '</td></tr>').join('') : '<tr><td colspan="5" class="empty">Nenhuma conta com esse filtro.</td></tr>';
+  }
+
+  function renderAssinaturas(s) {
+    const card = data.users.filter((u) => u.subStatus === 'authorized').length, pix = data.users.filter((u) => u.plan === 'pago' && u.subStatus !== 'authorized').length;
+    $('#subKpis').innerHTML = [
+      kpi('Assinantes', 'var(--good)', s.paid, money(s.mrr) + ' por mês'),
+      kpi('No cartão (renova)', 'var(--c1)', card, 'renovação automática'),
+      kpi('No Pix (avulso)', '#C3A6FF', pix, 'precisam pagar de novo'),
+      kpi('Pendentes', 'var(--warn)', s.pending, s.pendCard.length + ' cartão, ' + s.pendPix.length + ' Pix')
+    ].join('');
+    const item = (u, right) => '<div class="li" data-user="' + esc(u.email) + '">' + avatar(u) + '<div class="grow"><b>' + esc(u.name) + '</b><span>' + esc(u.email) + '</span></div><div class="r">' + right + '</div></div>';
+    const empty = (t) => '<div class="empty">' + t + '</div>';
+    const pend = s.pendPix.map((p) => [p.created, '<div class="li" data-user="' + esc(p.email) + '"><span class="badge b-warn">Pix</span><div class="grow"><b>' + esc(p.email) + '</b><span>QR gerado ' + ago(p.created) + '</span></div><div class="r">' + expiresIn(p.expires) + '</div></div>'])
+      .concat(s.pendCard.map((u) => [u.created, '<div class="li" data-user="' + esc(u.email) + '"><span class="badge b-warn">Cartão</span><div class="grow"><b>' + esc(u.name) + '</b><span>' + esc(u.email) + '</span></div><div class="r">checkout aberto</div></div>']));
+    $('#subPending').innerHTML = pend.length ? pend.sort((a, b) => b[0] - a[0]).map((x) => x[1]).join('') : empty('Nenhum pagamento pendente.');
+    const soon = data.users.filter((u) => u.plan !== 'nenhum' && u.subStatus !== 'authorized' && u.until && u.until - data.now < 7 * DAY).sort((a, b) => a.until - b.until);
+    $('#subEnding').innerHTML = soon.length ? soon.map((u) => item(u, planBadge(u.plan) + '<br>' + left(u.until))).join('') : empty('Nada vencendo esta semana.');
+    const paid = data.users.filter((u) => u.plan === 'pago').sort((a, b) => a.until - b.until);
+    $('#subActive').innerHTML = paid.length ? paid.map((u) => item(u, (u.subStatus === 'authorized' ? 'Cartão' : 'Pix') + '<br>até ' + fDate(u.until))).join('') : empty('Nenhum assinante ainda.');
+    const off = data.users.filter((u) => u.subStatus === 'cancelled' || u.subStatus === 'paused');
+    $('#subCancelled').innerHTML = off.length ? off.map((u) => item(u, esc(SUB[u.subStatus]) + '<br>' + (u.plan === 'pago' ? 'paga até ' + fDate(u.until) : 'sem acesso pago'))).join('') : empty('Nenhuma cancelada.');
+  }
+
+  function renderPagamentos() {
+    const groups = { todos: () => true, aprovado: (p) => ['approved', 'authorized'].includes(p.status), aguardando: (p) => ['pending', 'in_process'].includes(payState(p)), outros: (p) => !['approved', 'authorized', 'pending', 'in_process'].includes(payState(p)) };
+    $('#payChips').innerHTML = [['todos', 'Todos'], ['aprovado', 'Aprovados'], ['aguardando', 'Aguardando'], ['outros', 'Recusados e outros']]
+      .map(([k, l]) => '<button class="chip' + (pay === k ? ' on' : '') + '" data-pay="' + k + '">' + l + '<em>' + data.payments.filter(groups[k]).length + '</em></button>').join('');
+    const list = data.payments.filter(groups[pay]);
+    $('#paysBody').innerHTML = list.length ? list.map((p) => '<tr class="row" data-user="' + esc(p.email) + '"><td>' + fFull(p.created) + '</td><td>' + esc(p.email) + '</td><td>' + (p.kind === 'pix' ? 'Pix' : 'Cartão') + '</td><td>' + payBadge(p) + '</td><td>' + money(data.price) + '</td><td>' + (p.credited ? '<span class="badge b-good">liberado</span>' : '<span class="muted">-</span>') + '</td></tr>').join('') : '<tr><td colspan="6" class="empty">Nenhum pagamento.</td></tr>';
+  }
+
+  function renderPcs(s) {
+    $('#pcKpis').innerHTML = [kpi('Usando agora', 'var(--good)', s.online, 'app aberto há menos de 17 min'), kpi('Usaram hoje', 'var(--c1)', s.day, 'últimas 24 horas'), kpi('Usaram na semana', '#C3A6FF', s.week, 'últimos 7 dias'), kpi('Já entraram numa conta', 'var(--soft)', data.pcs.length, 'PCs diferentes')].join('');
+    const list = [...data.pcs].sort((a, b) => b.seen - a.seen);
+    $('#pcsBody').innerHTML = list.length ? list.map((p) => '<tr class="row" data-user="' + esc(p.email) + '"><td><span class="dot' + (p.active && online(p.seen) ? ' on' : '') + '"></span><b>' + esc(p.name || p.id) + '</b> <span class="muted">' + esc(p.id) + '</span></td><td>' + esc(p.email) + '</td><td>' + ago(p.seen) + '</td><td>' + (p.active ? (online(p.seen) ? '<span class="badge b-good">usando agora</span>' : '<span class="badge b-mute">conectado</span>') : '<span class="badge b-mute">saiu da conta</span>') + '</td></tr>').join('') : '<tr><td colspan="4" class="empty">Nenhum PC ainda.</td></tr>';
+  }
+
+  // ---------- detalhes da conta ----------
+  const REVOKED = { outro_pc: 'trocou de PC', saiu: 'saiu da conta', senha: 'trocou a senha' };
+  function openUser(email) {
+    const u = data.users.find((x) => x.email === email); if (!u) return;
+    const pays = data.payments.filter((p) => p.email === email);
+    const row = (k, v) => '<span>' + k + '</span><div>' + v + '</div>';
+    $('#drawer').innerHTML = '<button class="btn x" id="close">Fechar</button>' + avatar(u).replace('class="av"', 'class="av" style="width:48px;height:48px;font-size:20px"') +
+      '<h2>' + esc(u.name) + '</h2><div class="em">' + esc(u.email) + '</div><div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">' + planBadge(u.plan) +
+      (u.verified ? '<span class="badge b-good">e-mail confirmado</span>' : '<span class="badge b-mute">sem confirmar</span>') + (u.admin ? '<span class="badge b-cyan">dono</span>' : '') + '</div>' +
+      '<h3>Acesso</h3><div class="kv">' + row('Acesso até', u.until ? left(u.until) : '-') + row('Teste grátis', u.trialEnd > 0 ? 'até ' + fDate(u.trialEnd) : u.trialEnd === 0 ? 'não teve (PC já tinha testado)' : 'ainda não começou') +
+      row('Pago até', fDate(u.paidUntil)) + row('Cortesia até', fDate(u.compUntil)) + row('Cartão', esc(SUB[u.subStatus] || 'nunca assinou')) + row('Conta criada', fFull(u.created)) + '</div>' +
+      '<h3>PCs (' + u.pcs + ')</h3>' + (u.history.length ? '<div class="list">' + u.history.map((h) => '<div class="li" style="cursor:default"><span class="dot' + (!h.revoked && online(h.seen) ? ' on' : '') + '"></span><div class="grow"><b>' + esc(h.name || h.pc) + ' <span class="muted">' + esc(h.pc) + '</span></b><span>entrou ' + fFull(h.created) + (h.revoked ? ', ' + esc(REVOKED[h.revoked] || h.revoked) : '') + '</span></div><div class="r">' + ago(h.seen) + '</div></div>').join('') + '</div>' : '<div class="muted">Ainda não entrou no app.</div>') +
+      '<h3>Pagamentos (' + pays.length + ')</h3>' + (pays.length ? '<div class="list">' + pays.map((p) => '<div class="li" style="cursor:default">' + payBadge(p) + '<div class="grow"><b>' + (p.kind === 'pix' ? 'Pix' : 'Cartão') + ', ' + money(data.price) + '</b><span>' + fFull(p.created) + '</span></div></div>').join('') + '</div>' : '<div class="muted">Nenhum pagamento.</div>') +
+      '<h3>Dar dias grátis</h3><div class="muted">No PowerShell, na pasta server\\contas do projeto:</div><div class="code"><span id="cmd">.\\cortesia.ps1 -Email ' + esc(u.email) + ' -Dias 30</span><button class="btn" id="copy" style="margin-left:auto">Copiar</button></div>';
+    $('#drawer').hidden = false; $('#shade').hidden = false;
+    $('#close').onclick = closeUser;
+    $('#copy').onclick = async () => { try { await navigator.clipboard.writeText('powershell -ExecutionPolicy Bypass -File ' + $('#cmd').textContent); $('#copy').textContent = 'Copiado'; } catch { } };
+  }
+  function closeUser() { $('#drawer').hidden = true; $('#shade').hidden = true; }
+
+  // ---------- montagem ----------
+  const TITLES = { geral: 'Visão geral', contas: 'Contas', assinaturas: 'Assinaturas', pagamentos: 'Pagamentos', pcs: 'PCs' };
+  function render() {
+    if (!data) return;
+    $('#gate').hidden = true; $('#content').hidden = false; $('#demoTag').hidden = !demo;
+    const s = stats();
+    const me = data.users.find((u) => u.admin);
+    if (me) { $('#me').hidden = false; $('#me').innerHTML = avatar(me) + '<div style="min-width:0"><b>' + esc(me.name) + '</b><span>dono</span></div>'; }
+    $('#pendCount').hidden = !s.pending; $('#pendCount').textContent = s.pending;
+    $('#title').textContent = TITLES[view];
+    $$('.nav[data-view]').forEach((b) => b.classList.toggle('on', b.dataset.view === view));
+    $$('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== view; });
+    ({ geral: renderGeral, contas: renderContas, assinaturas: renderAssinaturas, pagamentos: renderPagamentos, pcs: renderPcs })[view](s);
+    stamp();
+  }
+  function stamp() { if (loadedAt) $('#updated').textContent = 'Atualizado ' + (Date.now() - loadedAt < 60000 ? 'agora' : 'há ' + Math.round((Date.now() - loadedAt) / 60000) + ' min') + '. Atualiza sozinho a cada minuto.'; }
+  function go(v) { view = v; try { history.replaceState(null, '', '#' + v); } catch { } closeUser(); render(); scrollTo(0, 0); }
+  function gate(kind, text) {
+    $('#content').hidden = true; const g = $('#gate'); g.hidden = false;
+    const icon = '<span class="av" style="width:56px;height:56px;margin:0 auto;font-size:22px">X</span>';
+    g.innerHTML = icon + (kind === 'login' ? '<h1>Entre com a conta de dono</h1><p>O painel usa o mesmo login do site. Entre em Minha conta e volte para esta página.</p><a class="btn" href="/conta/">Entrar em Minha conta</a>'
+      : kind === 'proibido' ? '<h1>Esta conta não é de dono</h1><p>Você entrou com uma conta que não tem acesso ao painel. Saia em Minha conta e entre com a conta de dono.</p><a class="btn" href="/conta/">Ir para Minha conta</a>'
+      : '<h1>Não deu para carregar</h1><p>' + esc(text || 'Confira a internet e tente de novo.') + '</p><button class="btn" onclick="location.reload()">Tentar de novo</button>');
+  }
+  function toast(text) { const t = $('#toast'); t.textContent = text; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => { t.hidden = true; }, 5000); }
+
+  async function load() {
+    if (loading) return; loading = true; $('#reload').classList.add('spin');
+    try {
+      if (demo) { data = fake(); loadedAt = Date.now(); render(); return; }
+      let token = null; try { token = localStorage.getItem('dxs-conta'); } catch { }
+      if (!token) return gate('login');
+      const api = String((window.DXS_LICENSE_CONFIG || {}).accountApi || 'https://dxs-contas.dxs-contas.workers.dev').replace(/\/$/, '');
+      let r; try { r = await fetch(api + '/v1/admin/painel', { headers: { Authorization: 'Bearer ' + token }, cache: 'no-store' }); }
+      catch { if (data) toast('Sem conexão. Mostrando os dados de antes.'); else gate('erro', 'Sem conexão com o servidor do DXS.'); return; }
+      const j = await r.json().catch(() => ({}));
+      if (r.status === 401) return gate('login');
+      if (r.status === 403) return gate('proibido');
+      if (!r.ok) { if (data) toast(j.error || 'Não deu para atualizar.'); else gate('erro', j.error); return; }
+      data = j; loadedAt = Date.now(); render();
+    } finally { loading = false; $('#reload').classList.remove('spin'); }
+  }
+
+  // ---------- eventos ----------
+  document.addEventListener('click', (e) => {
+    const n = e.target.closest('.nav[data-view], [data-go]'); if (n) { go(n.dataset.view || n.dataset.go); return; }
+    const c = e.target.closest('[data-plan]'); if (c) { plan = c.dataset.plan; render(); return; }
+    const p = e.target.closest('[data-pay]'); if (p) { pay = p.dataset.pay; render(); return; }
+    const th = e.target.closest('th.sort'); if (th) { sort = { key: th.dataset.sort, dir: sort.key === th.dataset.sort ? -sort.dir : (th.dataset.sort === 'name' ? 1 : -1) }; render(); return; }
+    const u = e.target.closest('[data-user]'); if (u && !e.target.closest('#drawer')) openUser(u.dataset.user);
+  });
+  $('#shade').onclick = closeUser;
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeUser(); });
+  $('#q').addEventListener('input', (e) => { query = e.target.value; renderContas(stats()); });
+  $('#reload').onclick = load;
+  $('#csv').onclick = () => {
+    const rows = [['Nome', 'E-mail', 'Plano', 'Acesso até', 'PC', 'Último uso', 'Criada', 'Confirmada']].concat(filteredUsers().map((u) =>
+      [u.name, u.email, (PLANS[u.plan] || PLANS.nenhum)[0], fDate(u.until), u.pc ? (u.pc.name || u.pc.id) : '', u.pc ? fFull(u.pc.seen) : '', fFull(u.created), u.verified ? 'sim' : 'não']));
+    const csv = '﻿' + rows.map((r) => r.map((v) => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"').join(';')).join('\r\n');
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+    a.download = 'dxs-contas-' + new Date().toISOString().slice(0, 10) + '.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  };
+  // dica ao passar o mouse nos gráficos
+  const tip = $('#tip');
+  document.addEventListener('pointermove', (e) => {
+    const t = e.target.closest('[data-tip]');
+    if (!t) { tip.hidden = true; return; }
+    const r = t.getBoundingClientRect(); tip.textContent = t.dataset.tip; tip.hidden = false;
+    tip.style.left = (t.classList.contains('r') ? e.clientX : r.left + r.width / 2) + 'px'; tip.style.top = (t.classList.contains('r') ? r.top : r.top + Math.min(r.height - 4, r.height - t.firstElementChild.offsetHeight)) + 'px';
+  });
+
+  const start = location.hash.slice(1); if (TITLES[start]) view = start;
+  setInterval(() => { if (!document.hidden) load(); else stamp(); }, 60000);
+  setInterval(stamp, 15000);
+  addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - loadedAt > 60000) load(); });
+
+  // ---------- dados de demonstração (só no localhost, com ?demo) ----------
+  function fake() {
+    const t = Math.floor(Date.now() / 1000), names = ['Lucas', 'Gabriel', 'Ana', 'Pedro', 'Julia', 'Matheus', 'Rafa', 'Bia', 'Kauã', 'Leo', 'Duda', 'Enzo', 'Lara', 'Davi', 'Nina', 'Theo', 'Malu', 'Caio', 'Yuri', 'Sofia'];
+    let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+    const users = [], payments = [], pcs = [];
+    for (let i = 0; i < 64; i++) {
+      const name = names[i % names.length] + (i >= names.length ? Math.floor(i / names.length) + 1 : ''), email = name.toLowerCase() + '@exemplo.com';
+      const created = t - Math.floor(rnd() * 30 * DAY), verified = rnd() > .12, r = rnd();
+      const u = { id: 'u' + i, email, name, verified, admin: i === 0, created, trialEnd: null, paidUntil: null, compUntil: null, subStatus: null, pc: null, pcs: 0, history: [] };
+      if (verified && rnd() > .15) {
+        u.trialEnd = created + 7 * DAY + 3600;
+        if (r > .72) { u.paidUntil = t + Math.floor(rnd() * 28 * DAY) + DAY; u.subStatus = rnd() > .4 ? 'authorized' : null; payments.push({ id: 'p' + i, email, kind: u.subStatus ? 'card' : 'pix', status: 'approved', created: u.paidUntil - 30 * DAY, credited: true }); }
+        else if (r > .66) u.subStatus = 'pending';
+        else if (r > .6) { u.subStatus = 'cancelled'; u.paidUntil = t - 2 * DAY; }
+        if (i === 0) u.compUntil = t + 300 * DAY;
+        const seen = t - Math.floor(rnd() * (rnd() > .7 ? 600 : 6 * DAY)), pcName = ['DESKTOP-', 'PC-GAMER-', 'NOTE-'][i % 3] + (1000 + i);
+        u.pc = { id: 'PC-' + String(i + 1).padStart(4, '0'), name: pcName, seen, since: created + 600 }; u.pcs = 1;
+        u.history = [{ pc: u.pc.id, name: pcName, created: created + 600, seen, revoked: null }];
+        pcs.push({ id: u.pc.id, name: pcName, email, seen, active: true });
+      }
+      const a = (x) => { const comp = x.compUntil || 0, paid = x.paidUntil || 0, trial = x.trialEnd || 0;
+        if (comp > t) return ['cortesia', comp]; if (paid > t) return ['pago', paid]; if (trial > t) return ['teste', trial]; return ['nenhum', Math.max(comp, paid, trial) || null]; };
+      [u.plan, u.until] = a(u); users.push(u);
+    }
+    payments.push({ id: 'px1', email: users[3].email, kind: 'pix', status: 'pending', created: t - 900, credited: false, expires: t + 1800 });
+    payments.push({ id: 'px2', email: users[9].email, kind: 'pix', status: 'rejected', created: t - 3 * DAY, credited: false });
+    payments.sort((a, b) => b.created - a.created); users.sort((a, b) => b.created - a.created);
+    return { now: t, price: 10, users, payments, pcs, trialPcs: pcs.length };
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load); else load();
+})();
+</script>
+</body>
+</html>
