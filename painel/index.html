@@ -425,23 +425,57 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
     $('#content').hidden = true; const g = $('#gate'); g.hidden = false;
     const icon = '<span class="av" style="width:56px;height:56px;margin:0 auto;font-size:22px">X</span>';
     g.innerHTML = icon + (kind === 'login' ? '<h1>Entre com a conta de dono</h1><p>O painel usa o mesmo login do site. Entre em Minha conta e volte para esta página.</p><a class="btn" href="/conta/">Entrar em Minha conta</a>'
+      : kind === 'codigo' ? '<h1>Confirme que é você</h1><p>Para abrir o painel, mandamos um código de 6 números para o e-mail da conta de dono. Ele libera este navegador por 12 horas.</p>' +
+        '<button class="btn" id="csend">Mandar código para o meu e-mail</button><div id="cstep" hidden style="margin-top:18px"><input id="ccode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000" ' +
+        'style="width:100%;padding:14px;border-radius:12px;border:1px solid var(--line2);background:#0A0618;color:#fff;font:700 24px Sora;letter-spacing:10px;text-align:center;outline:none">' +
+        '<button class="btn" id="cgo" style="margin-top:12px;width:100%;justify-content:center">Abrir o painel</button></div><p id="cmsg" style="margin:16px 0 0;font-size:13px"></p>'
       : kind === 'proibido' ? '<h1>Esta conta não é de dono</h1><p>Você entrou com uma conta que não tem acesso ao painel. Saia em Minha conta e entre com a conta de dono.</p><a class="btn" href="/conta/">Ir para Minha conta</a>'
       : '<h1>Não deu para carregar</h1><p>' + esc(text || 'Confira a internet e tente de novo.') + '</p><button class="btn" onclick="location.reload()">Tentar de novo</button>');
+    if (kind === 'codigo') codeGate();
   }
   function toast(text) { const t = $('#toast'); t.textContent = text; t.hidden = false; clearTimeout(toast.h); toast.h = setTimeout(() => { t.hidden = true; }, 5000); }
+
+  function readToken() { try { return localStorage.getItem('dxs-conta'); } catch { return null; } }
+  const apiUrl = () => String((window.DXS_LICENSE_CONFIG || {}).accountApi || 'https://dxs-contas.dxs-contas.workers.dev').replace(/\/$/, '');
+  async function post(path, body) {
+    let r; try { r = await fetch(apiUrl() + path, { method: 'POST', headers: { Authorization: 'Bearer ' + readToken(), 'Content-Type': 'application/json' }, body: JSON.stringify(body || {}), cache: 'no-store' }); }
+    catch { throw new Error('Sem conexão com o servidor do DXS.'); }
+    const j = await r.json().catch(() => ({}));
+    if (r.status === 401) { gate('login'); throw new Error(''); }
+    if (!r.ok) throw new Error(j.error || 'Não deu certo. Tente de novo.');
+    return j;
+  }
+  // Segunda trava: código de 6 números enviado ao e-mail do dono.
+  function codeGate() {
+    const g = $('#gate'), msg = (t, ok) => { const m = $('#cmsg'); m.textContent = t; m.style.color = ok ? 'var(--good)' : 'var(--bad)'; };
+    $('#csend').onclick = async () => {
+      const b = $('#csend'); b.disabled = true; msg('');
+      try { const j = await post('/v1/admin/codigo'); $('#cstep').hidden = false; b.textContent = 'Mandar de novo'; msg('Código enviado para ' + (j.sentTo || 'o seu e-mail') + '. Confira também o spam.', true); $('#ccode').focus(); }
+      catch (e) { if (e.message) msg(e.message); }
+      finally { b.disabled = false; }
+    };
+    const enter = async () => {
+      const code = $('#ccode').value.replace(/\D/g, ''); if (code.length !== 6) return msg('Digite os 6 números do código.');
+      $('#cgo').disabled = true; msg('');
+      try { await post('/v1/admin/entrar', { code }); g.hidden = true; await load(); }
+      catch (e) { if (e.message) msg(e.message); }
+      finally { $('#cgo').disabled = false; }
+    };
+    $('#cgo').onclick = enter;
+    $('#ccode').addEventListener('keydown', (e) => { if (e.key === 'Enter') enter(); });
+  }
 
   async function load() {
     if (loading) return; loading = true; $('#reload').classList.add('spin');
     try {
       if (demo) { data = fake(); loadedAt = Date.now(); render(); return; }
-      let token = null; try { token = localStorage.getItem('dxs-conta'); } catch { }
+      const token = readToken();
       if (!token) return gate('login');
-      const api = String((window.DXS_LICENSE_CONFIG || {}).accountApi || 'https://dxs-contas.dxs-contas.workers.dev').replace(/\/$/, '');
-      let r; try { r = await fetch(api + '/v1/admin/painel', { headers: { Authorization: 'Bearer ' + token }, cache: 'no-store' }); }
+      let r; try { r = await fetch(apiUrl() + '/v1/admin/painel', { headers: { Authorization: 'Bearer ' + token }, cache: 'no-store' }); }
       catch { if (data) toast('Sem conexão. Mostrando os dados de antes.'); else gate('erro', 'Sem conexão com o servidor do DXS.'); return; }
       const j = await r.json().catch(() => ({}));
       if (r.status === 401) return gate('login');
-      if (r.status === 403) return gate('proibido');
+      if (r.status === 403) return gate(j.code === 'confirmar_admin' ? 'codigo' : 'proibido');
       if (!r.ok) { if (data) toast(j.error || 'Não deu para atualizar.'); else gate('erro', j.error); return; }
       data = j; loadedAt = Date.now(); render();
     } finally { loading = false; $('#reload').classList.remove('spin'); }
@@ -476,9 +510,9 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
   });
 
   const start = location.hash.slice(1); if (TITLES[start]) view = start;
-  setInterval(() => { if (!document.hidden) load(); else stamp(); }, 60000);
+  setInterval(() => { if (!document.hidden && $('#gate').hidden) load(); else stamp(); }, 60000); // não atrapalha quem está digitando o código
   setInterval(stamp, 15000);
-  addEventListener('visibilitychange', () => { if (!document.hidden && Date.now() - loadedAt > 60000) load(); });
+  addEventListener('visibilitychange', () => { if (!document.hidden && $('#gate').hidden && Date.now() - loadedAt > 60000) load(); });
 
   // ---------- dados de demonstração (só no localhost, com ?demo) ----------
   function fake() {
