@@ -1,19 +1,27 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex"><title>Minha conta | DXS Boost</title><link rel="stylesheet" href="/licensing.css?v=0.9.16"><script src="/licensing-config.js?v=0.9.16" defer></script><script src="/conta.js?v=0.9.16" defer></script></head><body data-page="conta"><header><a class="brand" href="/"><img src="/images/logo.png" width="38" height="38" alt=""><span>DXS<span class="brand-light"> BOOST</span></span></a><nav><a href="/baixar/">Baixar</a><a href="/suporte">Suporte</a></nav></header><main><div class="layout"><section class="intro"><div class="eyebrow">DXS BOOST / SUA CONTA</div><h1>Baixa, entra,<br>joga.</h1><p>Uma conta, um PC por vez. Formatou ou trocou de PC? É só entrar de novo.</p><div class="price">R$ 10<small> / mês</small></div><ul class="features"><li>7 dias grátis para testar, sem cartão</li><li>Limpeza, monitoramento, Conexão e Game On</li><li>Cartão renova sozinho; Pix vale um mês</li><li>Cancele quando quiser; o mês pago continua valendo</li></ul><p class="small">O teste grátis começa quando você entra no app pela primeira vez. Vale uma vez por conta e por PC.</p></section>
-<section class="card">
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="no-referrer"><meta name="robots" content="noindex"><title>Minha conta | DXS Boost</title><link rel="icon" href="/images/logo.png"><link rel="stylesheet" href="/licensing.css?v=0.9.16"><script src="/licensing-config.js?v=0.9.16" defer></script><script src="/conta.js?v=0.9.16" defer></script><script src="/js/gsap.min.js" defer></script><script src="/js/ScrollTrigger.min.js" defer></script><script src="/site-motion.js?v=0.9.16" defer></script></head>
+<body class="sx" data-page="conta"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div><div class="progress" aria-hidden="true"></div>
+<nav class="top" aria-label="Principal"><a class="logo" href="/#inicio" aria-label="Início do DXS Boost"><span class="m"><svg width="13" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2L16 16M16 2L2 16" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg></span><span class="t">DXS BOOST</span></a><div class="links"><a href="/#recursos">Recursos</a><a href="/#gameon">Game On</a><a href="/#download">Plano</a><a href="/#faq">FAQ</a><a href="/changelog">Novidades</a><a href="/suporte">Suporte</a></div><a class="btn glass" id="nav-user" href="/conta/">Entrar</a><a class="btn light" href="/baixar/">Baixar</a><button class="burger" type="button" aria-label="Abrir menu" aria-expanded="false">☰</button></nav>
+<div class="menu-panel" hidden><a href="/#recursos">Recursos</a><a href="/#gameon">Game On</a><a href="/#download">Plano</a><a href="/#faq">FAQ</a><a href="/changelog">Novidades</a><a href="/suporte">Suporte</a></div>
+
+<main id="conteudo" class="wrap"><div class="acc">
+<section class="intro"><div class="kick">Sua conta</div><h1 data-split>Baixa, entra,<br><span class="grad">joga.</span></h1><p>Uma conta, um PC por vez. Formatou ou trocou de PC? É só entrar de novo.</p><div class="price">R$ 10<small> / mês</small></div><ul class="checks"><li>7 dias grátis para testar, sem cartão</li><li>Limpeza, monitoramento, Conexão e Game On</li><li>Cartão renova sozinho; Pix vale um mês</li><li>Cancele quando quiser; o mês pago continua valendo</li></ul><p class="small">O teste grátis começa quando você entra no app pela primeira vez. Vale uma vez por conta e por PC.</p></section>
+
+<div class="panel-wrap"><section class="card"><span class="shine" aria-hidden="true"></span>
 <div id="notice" class="notice" role="status" aria-live="polite" hidden></div>
 <div id="view-loading"><div class="eyebrow">CONTA</div><h2>Carregando…</h2></div>
 
 <div id="view-signin" hidden><div class="eyebrow" id="signin-eyebrow">01 / ENTRE NA SUA CONTA</div><h2 id="signin-title">Bem-vindo de volta.</h2>
 <div class="tabs" role="tablist"><button id="tab-login" class="tab" role="tab">Entrar</button><button id="tab-signup" class="tab" role="tab">Criar conta</button></div>
 <div id="name-row" hidden><label class="label" for="name">Nome de usuário</label><input id="name" type="text" autocomplete="nickname" maxlength="24" placeholder="Como quer ser chamado"></div><label class="label" for="email">E-mail</label><input id="email" type="email" autocomplete="email" maxlength="254" placeholder="voce@exemplo.com">
-<label class="label" for="password">Senha</label><input id="password" type="password" autocomplete="current-password" maxlength="200" placeholder="8 caracteres ou mais">
+<label class="label" for="password">Senha</label><div class="field"><input id="password" type="password" autocomplete="current-password" maxlength="200" placeholder="8 caracteres ou mais"><button type="button" class="eye" data-eye="password" aria-pressed="false">Ver</button></div>
 <label class="check" id="terms-row" hidden><input id="terms" type="checkbox"><span>Li e concordo com os <a href="/termos">termos</a> e a <a href="/privacidade">privacidade</a>.</span></label>
 <div class="buttons"><button id="signin">Entrar →</button></div>
 <p class="small"><a href="#" id="forgot">Esqueci a senha</a></p></div>
 
 <div id="view-code" hidden><div class="eyebrow">02 / CONFIRME</div><h2 id="code-title">Confirme seu e-mail.</h2><p class="small" id="code-text"></p>
-<label class="label" for="code">Código de 6 números</label><input id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
-<div id="newpass-row" hidden><label class="label" for="newpass">Senha nova</label><input id="newpass" type="password" autocomplete="new-password" maxlength="200" placeholder="8 caracteres ou mais"></div>
+<label class="label" for="code">Código de 6 números</label><input id="code" type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" placeholder="000000">
+<div id="newpass-row" hidden><label class="label" for="newpass">Senha nova</label><div class="field"><input id="newpass" type="password" autocomplete="new-password" maxlength="200" placeholder="8 caracteres ou mais"><button type="button" class="eye" data-eye="newpass" aria-pressed="false">Ver</button></div></div>
 <div class="buttons"><button id="confirm">Confirmar →</button><button id="resend" class="secondary">Reenviar código</button></div>
 <p class="small"><a href="#" id="code-back">Voltar</a></p></div>
 
@@ -26,5 +34,10 @@
 <div id="pix" hidden><div class="label">Aponte a câmera do seu banco</div><img id="pix-qr" alt="QR Code do Pix de R$ 10" width="220" height="220" hidden><div class="label">Ou use o Pix Copia e Cola</div><div id="pix-code" class="notice code"></div><div class="buttons"><button id="pix-copy" class="secondary">Copiar código Pix</button></div><div class="notice">Esperando o pagamento cair. Deixe esta página aberta: ela avisa sozinha, e o DXS Boost libera em seguida.</div></div>
 <div id="cancel-area" hidden><p class="small">Assinatura no cartão ativa. <a href="#" id="cancel">Cancelar a renovação</a> (o mês pago continua valendo).</p></div>
 <div class="buttons"><a class="button secondary" href="/baixar/">Baixar o DXS Boost</a><button id="logout" class="secondary">Sair da conta</button></div></div>
-</section></div>
-<section class="steps"><div><b>01 / CRIE</b><h3>E-mail e senha.</h3><p>Confirme com o código que chega no seu e-mail.</p></div><div><b>02 / ENTRE NO APP</b><h3>7 dias grátis.</h3><p>O teste começa no primeiro login, sem cartão.</p></div><div><b>03 / ASSINE</b><h3>R$ 10 por mês.</h3><p>Cartão ou Pix. O app libera sozinho quando o pagamento cai.</p></div></section></main><footer><span>DXS Boost. Tudo começa no seu PC.</span><a href="/termos">Termos</a><a href="/privacidade">Privacidade</a><a href="/baixar/">Download</a></footer></body></html>
+</section></div></div>
+
+<section class="steps3"><div data-reveal><b>01 / CRIE</b><h3>E-mail e senha.</h3><p>Confirme com o código que chega no seu e-mail.</p></div><div data-reveal><b>02 / ENTRE NO APP</b><h3>7 dias grátis.</h3><p>O teste começa no primeiro login, sem cartão.</p></div><div data-reveal><b>03 / ASSINE</b><h3>R$ 10 por mês.</h3><p>Cartão ou Pix. O app libera sozinho quando o pagamento cai.</p></div></section></main>
+
+<footer class="foot"><div class="wrap"><span>© 2026 DXS Boost</span><div class="end"><a href="/suporte">Suporte</a><a href="/privacidade">Privacidade</a><a href="/termos">Termos</a><a href="/changelog">Novidades</a><a href="/licencas">Licenças</a><a href="/baixar/">Download</a></div></div></footer>
+<div class="veil" aria-hidden="true"></div>
+</body></html>

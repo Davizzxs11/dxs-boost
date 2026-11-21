@@ -1,4 +1,12 @@
 {
+  "_createLucideIcon-D1sMHxs1.js": {
+    "file": "_next/static/chunks/createLucideIcon-D1sMHxs1.js",
+    "name": "createLucideIcon",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js"
+    ]
+  },
   "_framework-DTZGTDtF.js": {
     "file": "_next/static/chunks/framework-DTZGTDtF.js",
     "name": "framework",
@@ -10,82 +18,93 @@
     "file": "_next/static/chunks/rolldown-runtime-hePW80VL.js",
     "name": "rolldown-runtime"
   },
-  "_software-config-C0e62CsV.js": {
-    "file": "_next/static/chunks/software-config-C0e62CsV.js",
+  "_shell-CfLptJup.js": {
+    "file": "_next/static/chunks/shell-CfLptJup.js",
+    "name": "shell",
+    "imports": [
+      "_rolldown-runtime-hePW80VL.js",
+      "_framework-DTZGTDtF.js",
+      "_software-config-CkrTUUT-.js"
+    ]
+  },
+  "_software-config-CkrTUUT-.js": {
+    "file": "_next/static/chunks/software-config-CkrTUUT-.js",
     "name": "software-config"
   },
-  "_vinext-Ce4b6D8l.js": {
-    "file": "_next/static/chunks/vinext-Ce4b6D8l.js",
+  "_vinext-CLiBUe6P.js": {
+    "file": "_next/static/chunks/vinext-CLiBUe6P.js",
     "name": "vinext",
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js"
     ],
     "dynamicImports": [
-      "_vinext-Ce4b6D8l.js"
+      "_vinext-CLiBUe6P.js"
     ]
   },
-  "components/liquid-home.tsx": {
-    "file": "_next/static/chunks/liquid-home-C3z5dsv-.js",
-    "name": "liquid-home",
-    "src": "components/liquid-home.tsx",
+  "components/rolagem/home.tsx": {
+    "file": "_next/static/chunks/home-ylOOE4tY.js",
+    "name": "home",
+    "src": "components/rolagem/home.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_software-config-C0e62CsV.js",
-      "components/liquid-shell.tsx"
+      "_shell-CfLptJup.js",
+      "_createLucideIcon-D1sMHxs1.js",
+      "_software-config-CkrTUUT-.js"
     ]
   },
-  "components/liquid-shell.tsx": {
-    "file": "_next/static/chunks/liquid-shell-BoSVdKu6.js",
-    "name": "liquid-shell",
-    "src": "components/liquid-shell.tsx",
+  "components/rolagem/pages.tsx": {
+    "file": "_next/static/chunks/pages-YXhmutAb.js",
+    "name": "pages",
+    "src": "components/rolagem/pages.tsx",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_software-config-C0e62CsV.js"
+      "_shell-CfLptJup.js",
+      "_software-config-CkrTUUT-.js"
     ]
   },
   "components/support-actions.tsx": {
-    "file": "_next/static/chunks/support-actions-DY-HHn35.js",
+    "file": "_next/static/chunks/support-actions-BRYOa0yF.js",
     "name": "support-actions",
     "src": "components/support-actions.tsx",
     "isDynamicEntry": true,
     "imports": [
-      "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_software-config-C0e62CsV.js"
+      "_createLucideIcon-D1sMHxs1.js",
+      "_software-config-CkrTUUT-.js"
     ]
   },
   "node_modules/vinext/dist/shims/layout-segment-context.js": {
-    "file": "_next/static/chunks/layout-segment-context-CCSFnw-9.js",
+    "file": "_next/static/chunks/layout-segment-context-4gb6e6zg.js",
     "name": "layout-segment-context",
     "src": "node_modules/vinext/dist/shims/layout-segment-context.js",
     "isDynamicEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-Ce4b6D8l.js"
+      "_vinext-CLiBUe6P.js"
     ]
   },
   "virtual:vinext-app-browser-entry": {
-    "file": "_next/static/chunks/index-DlNoCoV3.js",
+    "file": "_next/static/chunks/index-FcaMzEUT.js",
     "name": "index",
     "src": "virtual:vinext-app-browser-entry",
     "isEntry": true,
     "imports": [
       "_rolldown-runtime-hePW80VL.js",
       "_framework-DTZGTDtF.js",
-      "_vinext-Ce4b6D8l.js"
+      "_vinext-CLiBUe6P.js"
     ],
     "dynamicImports": [
-      "_vinext-Ce4b6D8l.js",
+      "_vinext-CLiBUe6P.js",
       "node_modules/vinext/dist/shims/layout-segment-context.js",
-      "components/liquid-home.tsx",
+      "components/rolagem/home.tsx",
       "components/support-actions.tsx",
-      "components/liquid-shell.tsx"
+      "components/rolagem/pages.tsx"
     ]
   }
 }
