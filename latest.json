@@ -1,8 +1,8 @@
 {
     "schema":  1,
     "product":  "DXSBoost",
-    "version":  "0.9.17.0",
-    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.17.exe",
-    "notes":  "O teste grátis de 7 dias agora vale uma vez por PC mesmo depois de formatar ou trocar o Windows.",
-    "sha256":  "c6c18fe237bc127a9a0dab9759d90b850c2d3615ddf557b9014c5719a90a9fc8"
+    "version":  "0.9.18.0",
+    "downloadUrl":  "https://dxsboost.com.br/downloads/DXSBoost-Setup-0.9.18.exe",
+    "notes":  "Resumo da partida: ao fechar um jogo da biblioteca, o DXS mostra FPS, lows, engasgos, temperatura, ping e o que pesou, e guarda no histórico do jogo.\nServidores dos jogos: nova aba em Conexão com o ping até os servidores do Fortnite e da Amazon.\nNova aba Saúde: vida útil e temperatura do SSD e histórico de temperatura da GPU, com aviso quando ela começa a esquentar mais.",
+    "sha256":  "37222788a375fa82ad3b903b4dbb8115b35d90964e34a664cd6bd48902c2a196"
 }
