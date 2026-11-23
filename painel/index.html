@@ -156,6 +156,7 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
     <button class="nav" data-view="assinaturas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M2 10h20M6 15h4"/></svg>Assinaturas<span class="count" id="pendCount" hidden></span></button>
     <button class="nav" data-view="pagamentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Pagamentos</button>
     <button class="nav" data-view="pcs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>PCs</button>
+    <button class="nav" data-view="site"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Site</button>
     <div class="grow"></div>
     <a class="nav" href="/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/></svg>Ver o site</a>
     <div class="me" id="me" hidden></div>
@@ -213,7 +214,18 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
       <section data-panel="pcs" hidden>
         <div class="kpis" id="pcKpis"></div>
         <div class="tw"><table><thead><tr><th>PC</th><th>Conta</th><th>Último uso</th><th>Situação</th></tr></thead><tbody id="pcsBody"></tbody></table></div>
-        <p class="note">Cada linha é um PC que já entrou em alguma conta. Downloads do instalador não são contados: o arquivo sai direto do site, sem estatística.</p>
+        <p class="note">Cada linha é um PC que já entrou em alguma conta. Quantos baixaram o instalador está na aba Site.</p>
+      </section>
+
+      <section data-panel="site" hidden>
+        <div class="kpis" id="siteKpis"></div>
+        <div class="grid">
+          <div class="card s6"><div class="head"><div><h2>Visitantes por dia</h2><div class="hint">Pessoas diferentes no site, últimos 30 dias</div></div></div><div id="chartVisitors"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Downloads por dia</h2><div class="hint">Cliques em baixar o instalador, últimos 30 dias</div></div></div><div id="chartDownloads"></div></div>
+          <div class="card s6"><div class="head"><div><h2>Páginas mais vistas</h2><div class="hint">Últimos 30 dias</div></div></div><div id="chartPages"></div></div>
+          <div class="card s6"><div class="head"><div><h2>De onde baixaram</h2><div class="hint">Página onde clicaram em baixar, últimos 30 dias</div></div></div><div id="chartFrom"></div></div>
+        </div>
+        <p class="note">O contador não usa cookies e não guarda IP: cada visitante vira um código que muda todo dia. Quem pede para não ser rastreado no navegador não é contado. A contagem começou em 23/11/2026.</p>
       </section>
     </div>
   </main>
@@ -285,16 +297,48 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
   const kpi = (label, color, value, detail, go) => '<div class="kpi' + (go ? ' click" data-go="' + go : '') + '"><div class="lb"><i style="background:' + color + '"></i>' + label + '</div><div class="v">' + value + '</div><div class="d">' + detail + '</div></div>';
 
   // ---------- gráficos ----------
-  function barChart(el, points) {
+  function barChart(el, points, one = 'conta nova', many = 'contas novas', aria = 'Contas novas por dia nos últimos 30 dias') {
     const max = Math.max(1, ...points.map((p) => p.v)), step = Math.max(1, Math.ceil(max / 3));
     const top = step * 3, lines = [0, 1, 2, 3].map((i) => '<div class="gl" style="bottom:' + (100 * i / 3) + '%"><span>' + (step * i) + '</span></div>').join('');
-    el.innerHTML = '<div class="bars" role="img" aria-label="Contas novas por dia nos últimos 30 dias">' + lines + points.map((p) =>
-      '<div class="b' + (p.v ? '' : ' zero') + '" data-tip="' + esc(p.label + ': ' + plural(p.v, 'conta nova', 'contas novas')) + '"><i style="height:' + Math.max(1, 100 * p.v / top) + '%"></i></div>').join('') + '</div>' +
+    el.innerHTML = '<div class="bars" role="img" aria-label="' + esc(aria) + '">' + lines + points.map((p) =>
+      '<div class="b' + (p.v ? '' : ' zero') + '" data-tip="' + esc(p.label + ': ' + plural(p.v, one, many)) + '"><i style="height:' + Math.max(1, 100 * p.v / top) + '%"></i></div>').join('') + '</div>' +
       '<div class="xl"><span>' + esc(points[0].label) + '</span><span>' + esc(points[Math.floor(points.length / 2)].label) + '</span><span>hoje</span></div>';
   }
   function hBars(el, rows, base) {
     const max = Math.max(1, base || Math.max(...rows.map((r) => r[1])));
     el.innerHTML = '<div class="hb">' + rows.map(([label, v, extra]) => '<div class="r" data-tip="' + esc(label + ': ' + v) + '"><span>' + esc(label) + '</span><div class="t"><i style="width:' + (100 * v / max) + '%"></i></div><b>' + v + (extra ? '<small>' + extra + '</small>' : '') + '</b></div>').join('') + '</div>';
+  }
+
+  // ---------- contador do site ----------
+  const dayFmt = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Sao_Paulo', year: 'numeric', month: '2-digit', day: '2-digit' });
+  function lastDays(n) {
+    const out = [];
+    for (let i = n - 1; i >= 0; i--) { const d = new Date((data.now - i * DAY) * 1000); out.push({ key: dayFmt.format(d), label: d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', timeZone: 'America/Sao_Paulo' }) }); }
+    return out;
+  }
+  function site() {
+    const rows = data.site || [], days = lastDays(30), keys = new Set(days.map((d) => d.key)), recent = rows.filter((r) => keys.has(r.day));
+    const sum = (kind) => recent.filter((r) => r.kind === kind).reduce((a, r) => a + r.count, 0);
+    const perDay = (kind) => days.map((d) => ({ label: d.label, v: recent.filter((r) => r.kind === kind && r.day === d.key).reduce((a, r) => a + r.count, 0) }));
+    const group = (kind) => { const m = new Map(); recent.filter((r) => r.kind === kind).forEach((r) => m.set(r.key, (m.get(r.key) || 0) + r.count)); return [...m].sort((a, b) => b[1] - a[1]); };
+    return { visitors: sum('visitor'), views: sum('view'), downloads: sum('download'), perDay, group };
+  }
+  const PAGES = { '/': 'Início', '/conta': 'Minha conta', '/baixar': 'Baixar', '/changelog': 'Novidades', '/suporte': 'Suporte', '/privacidade': 'Privacidade', '/termos': 'Termos', '/licencas': 'Licenças' };
+  function renderSite() {
+    const s = site(), pct = s.visitors ? Math.round(100 * s.downloads / s.visitors) : 0;
+    $('#siteKpis').innerHTML = [
+      kpi('Visitantes', 'var(--c3)', s.visitors, 'soma de cada dia, últimos 30 dias'),
+      kpi('Páginas vistas', 'var(--c1)', s.views, (s.visitors ? (s.views / s.visitors).toFixed(1).replace('.', ',') : '0') + ' por visitante'),
+      kpi('Downloads', 'var(--good)', s.downloads, 'cliques em baixar o instalador'),
+      kpi('Visitantes que baixaram', 'var(--c4)', pct + '%', 'downloads divididos por visitantes')
+    ].join('');
+    barChart($('#chartVisitors'), s.perDay('visitor'), 'visitante', 'visitantes', 'Visitantes por dia nos últimos 30 dias');
+    barChart($('#chartDownloads'), s.perDay('download'), 'download', 'downloads', 'Downloads por dia nos últimos 30 dias');
+    const none = '<div class="empty">Ainda sem dados. A contagem começa quando o site recebe visitas.</div>';
+    const pages = s.group('view').slice(0, 8).map(([k, v]) => [PAGES[k] || k, v]);
+    if (pages.length) hBars($('#chartPages'), pages); else $('#chartPages').innerHTML = none;
+    const from = s.group('download_from').slice(0, 6).map(([k, v]) => [PAGES[k] || k, v]);
+    if (from.length) hBars($('#chartFrom'), from); else $('#chartFrom').innerHTML = none;
   }
 
   // ---------- telas ----------
@@ -307,7 +351,7 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
       kpi('Pagamentos pendentes', 'var(--warn)', s.pending, s.pendCard.length + ' no cartão, ' + s.pendPix.length + ' no Pix', 'assinaturas'),
       kpi('Conversão do teste', 'var(--c4)', s.conversion + '%', s.converted + ' de ' + s.trialed + ' que testaram assinaram'),
       kpi('PCs usando agora', 'var(--good)', s.online, s.day + ' hoje, ' + s.week + ' na semana', 'pcs'),
-      kpi('PCs que já testaram', 'var(--soft)', data.trialPcs, 'cada PC só tem um teste')
+      kpi('Downloads em 30 dias', 'var(--soft)', site().downloads, plural(site().visitors, 'visitante', 'visitantes') + ' no site', 'site')
     ].join('');
     const pts = []; const today = new Date(); today.setHours(0, 0, 0, 0);
     for (let i = 29; i >= 0; i--) {
@@ -405,7 +449,7 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
   function closeUser() { $('#drawer').hidden = true; $('#shade').hidden = true; }
 
   // ---------- montagem ----------
-  const TITLES = { geral: 'Visão geral', contas: 'Contas', assinaturas: 'Assinaturas', pagamentos: 'Pagamentos', pcs: 'PCs' };
+  const TITLES = { geral: 'Visão geral', contas: 'Contas', assinaturas: 'Assinaturas', pagamentos: 'Pagamentos', pcs: 'PCs', site: 'Site' };
   function render() {
     if (!data) return;
     $('#gate').hidden = true; $('#content').hidden = false; $('#demoTag').hidden = !demo;
@@ -416,7 +460,7 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
     $('#title').textContent = TITLES[view];
     $$('.nav[data-view]').forEach((b) => b.classList.toggle('on', b.dataset.view === view));
     $$('[data-panel]').forEach((p) => { p.hidden = p.dataset.panel !== view; });
-    ({ geral: renderGeral, contas: renderContas, assinaturas: renderAssinaturas, pagamentos: renderPagamentos, pcs: renderPcs })[view](s);
+    ({ geral: renderGeral, contas: renderContas, assinaturas: renderAssinaturas, pagamentos: renderPagamentos, pcs: renderPcs, site: renderSite })[view](s);
     stamp();
   }
   function stamp() { if (loadedAt) $('#updated').textContent = 'Atualizado ' + (Date.now() - loadedAt < 60000 ? 'agora' : 'há ' + Math.round((Date.now() - loadedAt) / 60000) + ' min') + '. Atualiza sozinho a cada minuto.'; }
@@ -541,7 +585,15 @@ tbody tr.row { cursor: pointer; } tbody tr.row:hover td { background: #ffffff05;
     payments.push({ id: 'px1', email: users[3].email, kind: 'pix', status: 'pending', created: t - 900, credited: false, expires: t + 1800 });
     payments.push({ id: 'px2', email: users[9].email, kind: 'pix', status: 'rejected', created: t - 3 * DAY, credited: false });
     payments.sort((a, b) => b.created - a.created); users.sort((a, b) => b.created - a.created);
-    return { now: t, price: 10, users, payments, pcs, trialPcs: pcs.length };
+    const site = [], pages = ['/', '/', '/', '/conta', '/baixar', '/changelog', '/suporte', '/privacidade'];
+    for (let i = 0; i < 30; i++) {
+      const day = dayFmt.format(new Date((t - i * DAY) * 1000)), vis = 20 + Math.floor(rnd() * 60 + (30 - i) * 2);
+      site.push({ day, kind: 'visitor', key: '', count: vis }, { day, kind: 'download', key: '0.9.17', count: Math.floor(vis * (.1 + rnd() * .15)) });
+      pages.forEach((p, k) => site.push({ day, kind: 'view', key: p + (k < 3 ? '#' + k : ''), count: Math.floor(vis * (k < 3 ? .5 : .15) * rnd()) + 1 }));
+      site.push({ day, kind: 'download_from', key: '/', count: Math.floor(vis * .08) }, { day, kind: 'download_from', key: '/baixar', count: Math.floor(vis * .04) });
+    }
+    site.forEach((r) => { if (r.kind === 'view') r.key = r.key.replace(/#\d$/, ''); });
+    return { now: t, price: 10, users, payments, pcs, trialPcs: pcs.length, site };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', load); else load();

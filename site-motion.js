@@ -21,6 +21,19 @@
     burger.onclick = () => { const open = panel.hidden; panel.hidden = !open; burger.textContent = open ? '✕' : '☰'; burger.setAttribute('aria-expanded', open); };
     panel.onclick = () => { panel.hidden = true; burger.textContent = '☰'; burger.setAttribute('aria-expanded', 'false'); };
   }
+  // contador do site (sem cookies, sem guardar IP): visita a cada página aberta e clique em baixar
+  const hit = (e, extra) => {
+    try {
+      if (navigator.doNotTrack === '1' || !/^(www\.)?dxsboost\.com\.br$/.test(location.hostname)) return;
+      const api = String((window.DXS_LICENSE_CONFIG || {}).accountApi || 'https://dxs-contas.dxs-contas.workers.dev').replace(/\/$/, '');
+      navigator.sendBeacon(api + '/v1/stats/hit', JSON.stringify(Object.assign({ e, p: location.pathname.toLowerCase() }, extra)));
+    } catch { }
+  };
+  hit('view');
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href]'), exe = a && /\/downloads\/DXSBoost-Setup-([\d.]+)\.exe$/i.exec(a.href);
+    if (exe) hit('download', { v: exe[1] });
+  }, true);
   // ver a senha
   $$('[data-eye]').forEach((b) => b.addEventListener('click', () => {
     const input = document.getElementById(b.dataset.eye), show = input.type === 'password';
